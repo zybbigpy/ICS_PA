@@ -213,10 +213,10 @@ uint32_t alu_and(uint32_t src, uint32_t dest, size_t data_size) {
 #ifdef NEMU_REF_ALU
 	return __ref_alu_and(src, dest, data_size);
 #else
-  uint32_t result = src & dest;
-  set_PF(result);
-  set_SF(result,data_size);
-  set_ZF(result,data_size);
+  uint32_t res = src & dest;
+  set_PF(res);
+  set_SF(res,data_size);
+  set_ZF(res,data_size);
   cpu.eflags.CF = 0;
   cpu.eflags.OF = 0;
 	//printf("\e[0;31mPlease implement me at alu.c\e[0m\n");
