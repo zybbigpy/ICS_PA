@@ -14,10 +14,10 @@ void set_PF(uint32_t result){
   }
   if(flag%2==0)
   {
-    cpu.eflags.PF=0;
+    cpu.eflags.PF=1;
   }
   else {
-    cpu.eflags.PF=1;
+    cpu.eflags.PF=0;
   }
   
 }
