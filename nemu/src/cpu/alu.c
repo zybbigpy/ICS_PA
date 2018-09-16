@@ -6,10 +6,11 @@ void set_CF_add(uint32_t result,uint32_t src,size_t data_size){
 }
 void set_PF(uint32_t result){
   int flag = 0;
+  result=result&0x000000ff;
   while(result!=0)
   {
     if(result%2==1)
-      flag++;
+    { flag++;}
     result=result/2;
   }
   if(flag%2==0)
