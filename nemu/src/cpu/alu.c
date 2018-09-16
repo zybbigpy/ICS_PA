@@ -313,7 +313,7 @@ uint32_t alu_sar(uint32_t src, uint32_t dest, size_t data_size) {
   while(count!=0)
   {
     cpu.eflags.CF = res & 0x00000001;
-    res = (uint32_t)res>>1;
+    res = (int32_t)res>>1;
     count--;
   }
   set_PF(res);
