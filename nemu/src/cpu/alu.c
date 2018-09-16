@@ -98,13 +98,13 @@ uint32_t alu_sub(uint32_t src, uint32_t dest, size_t data_size) {
 	//printf("\e[0;31mPlease implement me at alu.c\e[0m\n");
   uint32_t res = 0;
   res = dest - src;
-  
+  uint32_t src_rev = ~src+1; 
   set_CF_sub(res,dest,data_size);
   set_ZF(res,data_size);
   set_PF(res);
   set_SF(res,data_size);
   //OF is the same as add 
-  set_OF_add(res,src,dest,data_size);
+  set_OF_add(res,src_rev,dest,data_size);
   //	assert(0);
   return res&(0xffffffff>>(32-data_size));
 	//return 0;
