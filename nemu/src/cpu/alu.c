@@ -54,9 +54,34 @@ void set_OF_add(uint32_t result,uint32_t src,uint32_t dest,size_t data_size){
     cpu.eflags.OF=0;
   }
 }
+
+void set_OF_sub(uint32_t result,uint32_t src,uint32_t dest,size_t data_size){
+  uint32_t src=~src+1;
+  uint32_t result=src_rev+dest;
+  switch(data_size){
+    case 8:
+      result=sign_ext(result&0xff,8);
+      src=sign_ext(src&0xff,8);
+      dest=sign_ext(dest&0xff,8);
+      break;
+    case 16: 
+      result=sign_ext(result&0xffff,16);
+      src=sign_ext(src&0xffff,16);
+      dest=sign_ext(dest&0xffff,16);
+      break;
+    default:break;
+  } 
+  if(sign(src)==sign(dest)){
+    if(sign(src)!=sign(result)){cpu.eflags.OF=1;}
+    else{cpu.eflags.OF=0;} 
+  }
+  else{
+    cpu.eflags.OF=0;
+  }
+}
 uint32_t alu_add(uint32_t src, uint32_t dest, size_t data_size) {
 #ifdef NEMU_REF_ALU
-	return __ref_alu_add(src, dest, data_size);
+  return __ref_alu_add(src, dest, data_size);
 #else
 
   uint32_t res = 0;
@@ -98,14 +123,14 @@ uint32_t alu_sub(uint32_t src, uint32_t dest, size_t data_size) {
 	//printf("\e[0;31mPlease implement me at alu.c\e[0m\n");
   uint32_t res = 0;
   res = dest - src;
-  uint32_t src_rev = ~src+1; 
+  //uint32_t src_rev = ~src+1; 
   set_CF_sub(res,dest,data_size);
   set_ZF(res,data_size);
   set_PF(res);
   set_SF(res,data_size);
   //OF is the same as add 
-  set_OF_add(res,src_rev,dest,data_size);
-  //	assert(0);
+  set_OF_sub(res,src,dest,data_size);
+  //	alu_mulssert(0);
   return res&(0xffffffff>>(32-data_size));
 	//return 0;
 #endif
