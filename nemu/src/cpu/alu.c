@@ -265,6 +265,10 @@ uint32_t alu_shl(uint32_t src, uint32_t dest, size_t data_size) {
 #else
 	uint32_t res=dest;
   int count = src;
+  if(count==1)
+  {
+    cpu.eflags.OF=
+  }
   while(count!=0)
   {
     uint32_t rm=sign_ext(res&(0xffffffff>>(32-data_size)),data_size);
