@@ -56,23 +56,23 @@ void set_OF_add(uint32_t result,uint32_t src,uint32_t dest,size_t data_size){
 }
 
 void set_OF_sub(uint32_t result,uint32_t src,uint32_t dest,size_t data_size){
-  uint32_t src_rev=((~src)&(0xffffffff>>(32-data_size)))+1;
-  uint32_t res=src_rev+dest;
+  //uint32_t src_rev=((~src)&(0xffffffff>>(32-data_size)))+1;
+  //uint32_t res=src_rev+dest;
   switch(data_size){
     case 8:
-      res=sign_ext(res&0xff,8);
-      src_rev=sign_ext(src_rev&0xff,8);
+      result=sign_ext(result&0xff,8);
+      src=sign_ext(src&0xff,8);
       dest=sign_ext(dest&0xff,8);
       break;
     case 16: 
-      res=sign_ext(res&0xffff,16);
-      src_rev=sign_ext(src_rev&0xffff,16);
+      result=sign_ext(result&0xffff,16);
+      src=sign_ext(src&0xffff,16);
       dest=sign_ext(dest&0xffff,16);
       break;
     default:break;
   } 
-  if(sign(src_rev)==sign(dest)){
-    if(sign(src_rev)!=sign(result)){cpu.eflags.OF=1;}
+  if(sign(src)!=sign(dest)){
+    if(sign(src)==sign(result)){cpu.eflags.OF=1;}
     else{cpu.eflags.OF=0;} 
   }
   else{
@@ -129,7 +129,7 @@ uint32_t alu_sub(uint32_t src, uint32_t dest, size_t data_size) {
   set_PF(res);
   set_SF(res,data_size);
   //OF is the same as add 
-  //set_OF_sub(res,src,dest,data_size);
+  set_OF_sub(res,src,dest,data_size);
   //	alu_mulssert(0);
   return res&(0xffffffff>>(32-data_size));
 	//return 0;
