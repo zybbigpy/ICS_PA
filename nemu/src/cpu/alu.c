@@ -288,10 +288,11 @@ uint32_t alu_shr(uint32_t src, uint32_t dest, size_t data_size) {
 #else
   int count = src;
   uint32_t res = dest&(0xffffffff>>(32-data_size));
-  if(count!=0)
+  while(count!=0)
   {
     cpu.eflags.CF = res &0x00000001;
     res = res >> 1;
+    count--;
   }
   set_PF(res);
   set_SF(res,data_size);
