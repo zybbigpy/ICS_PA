@@ -56,7 +56,7 @@ void set_OF_add(uint32_t result,uint32_t src,uint32_t dest,size_t data_size){
 }
 
 void set_OF_sub(uint32_t result,uint32_t src,uint32_t dest,size_t data_size){
-  uint32_t src_rev=(~src)&(0xffffffff>>(32-data_size))+1;
+  uint32_t src_rev=((~src)&(0xffffffff>>(32-data_size)))+1;
   uint32_t res=src_rev+dest;
   switch(data_size){
     case 8:
