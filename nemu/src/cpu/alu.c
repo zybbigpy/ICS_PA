@@ -317,8 +317,8 @@ uint32_t alu_sar(uint32_t src, uint32_t dest, size_t data_size) {
     count--;
   }
   set_PF(res);
-  set_SF(res,result);
-  set_ZF(res,result);
+  set_SF(res,data_size);
+  set_ZF(res,data_size);
   return res&(0xffffffff>>(32-data_size));
 	//printf("\e[0;31mPlease implement me at alu.c\e[0m\n");
 	//assert(0);
