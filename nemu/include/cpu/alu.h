@@ -40,6 +40,7 @@ int32_t alu_imod(int64_t src, int64_t dest);
 //#define sign_ext(x) ((int32_t)((int8_t)(x)))
 
 inline uint32_t sign_ext(uint32_t x, size_t data_size) {
+  //hold the last (data_size) bit and transfer to int then sign bit extension.
         assert(data_size == 16 || data_size == 8 || data_size == 32);
         switch(data_size) {
         case 8: return (int32_t)((int8_t)(x & 0xff));
