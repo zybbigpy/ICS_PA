@@ -291,7 +291,7 @@ uint32_t alu_shr(uint32_t src, uint32_t dest, size_t data_size) {
   if(count!=0)
   {
     cpu.eflags.CF = res &0x00000001;
-    res >> 1;
+    res = res >> 1;
   }
   set_PF(res);
   set_SF(res,data_size);
