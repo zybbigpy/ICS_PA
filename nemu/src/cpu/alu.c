@@ -308,9 +308,21 @@ uint32_t alu_sar(uint32_t src, uint32_t dest, size_t data_size) {
 #ifdef NEMU_REF_ALU
 	return __ref_alu_sar(src, dest, data_size);	
 #else
-	printf("\e[0;31mPlease implement me at alu.c\e[0m\n");
-	assert(0);
-	return 0;
+  uint32_t res = sign_ext((dest&(0xffffffff>>(32-data_size))),data_size);
+  int count = src;
+  while(count!=0)
+  {
+    cpu.eflags.CF = res & 0x00000001;
+    res = (uint32_t)res>>1;
+    count--;
+  }
+  set_PF(res);
+  set_SF(res,result);
+  set_ZF(res,result);
+  return res&(0xffffffff>>(32-data_size));
+	//printf("\e[0;31mPlease implement me at alu.c\e[0m\n");
+	//assert(0);
+	//return 0;
 #endif
 }
 
