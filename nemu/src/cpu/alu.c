@@ -143,7 +143,7 @@ void set_CF_sub(uint32_t result,uint32_t src,size_t data_size){
   cpu.eflags.CF=result>src;
 }
 
-void set_CF_sub(uint32_t result,uint32_t src,size_t data_size){
+void set_CF_sbb(uint32_t result,uint32_t src,size_t data_size){
   if(cpu.eflags.CF == 0)
   {
     result = sign_ext(result&(0xffffffff>>(32-data_size)),data_size);
