@@ -268,7 +268,7 @@ uint32_t alu_mod(uint64_t src, uint64_t dest) {
 	return __ref_alu_mod(src, dest);
 #else
   uint64_t res = dest%src;
-  return uint32_t(res);
+  return (uint32_t)res;
 //	printf("\e[0;31mPlease implement me at alu.c\e[0m\n");
 //	assert(0);
 //	return 0;
