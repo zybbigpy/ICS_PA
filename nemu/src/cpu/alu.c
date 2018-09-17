@@ -217,7 +217,7 @@ uint64_t alu_mul(uint32_t src, uint32_t dest, size_t data_size) {
     cpu.eflags.CF=1;
     cpu.eflags.OF=1;
   }
-  return res&(0xffffffffffffffff>>(64-2*2*data_size));
+  return res;
 //	printf("\e[0;31mPlease implement me at alu.c\e[0m\n");
 //	assert(0);
 //	return 0;
