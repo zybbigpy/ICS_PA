@@ -98,10 +98,27 @@ inline uint32_t internal_normalize(uint32_t sign, int32_t exp, uint64_t sig_grs)
         sig_grs = sig_grs >> 3 + 1;
       }
     }
-
-    
-		printf("\e[0;31mPlease implement me at fpu.c\e[0m\n");
-		assert(0);
+    // boundary condition 0xffffff+1 0r 0x7fffff+1
+    if(sig_grs == 0x1000000)
+    {
+      if(exp == 254)
+      {
+        //overflow to infinity
+        sig_grs = 0;
+        overflow = true;
+      }
+      else
+      {
+        sig_grs = sig_grs >> 1;
+        exp++;
+      }
+    }
+    if(sig_grs == 0x800000 && exp = 0)
+    {
+      exp++;
+    }
+		//printf("\e[0;31mPlease implement me at fpu.c\e[0m\n");
+		//assert(0);
 	}
 
 
