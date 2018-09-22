@@ -123,6 +123,7 @@ inline uint32_t internal_normalize(uint32_t sign, int32_t exp, uint64_t sig_grs)
 		//assert(0);
 	}
 
+  printf("sign = %x,exp = %u , sig_grs = %llx  !RESULT AFTER22!",sign, exp, sig_grs);
 
 	FLOAT f;
 	f.sign = sign;
