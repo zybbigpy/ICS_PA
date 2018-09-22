@@ -9,7 +9,7 @@ FLOAT p_zero, n_zero, p_inf, n_inf, p_nan, n_nan;
 // the last three bits of the significand are reserved for the GRS bits
 inline uint32_t internal_normalize(uint32_t sign, int32_t exp, uint64_t sig_grs) {
 
-  printf("sign = %x,exp = %u , sig_grs = %llx  !RESULT!",sign, exp, sig_grs);
+  //printf("sign = %x,exp = %u , sig_grs = %llx  !RESULT!",sign, exp, sig_grs);
 	// normalization
 	bool overflow = false; // true if the result is INFINITY or 0 during normalize
 
@@ -43,13 +43,19 @@ inline uint32_t internal_normalize(uint32_t sign, int32_t exp, uint64_t sig_grs)
 			// we have a denormal here, the exponent is 0, but means 2^-126,
 			// as a result, the significand should shift right once more
 			/* TODO: shift right, pay attention to sticky bit*/
-			printf("\e[0;31mPlease implement me at fpu.c\e[0m\n");
-			assert(0);
+      uint32_t sticky = 0;
+			sticky = sticky | (sig_grs & 0x1);
+			sig_grs = sig_grs >> 1;
+			sig_grs |= sticky;
+		//	printf("\e[0;31mPlease implement me at fpu.c\e[0m\n");
+		//	assert(0);
 		}
 		if(exp < 0) {
 			/* TODO: assign the number to zero */
-			printf("\e[0;31mPlease implement me at fpu.c\e[0m\n");
-			assert(0);
+      exp = 0;
+      sig_grs = 0;
+		//	printf("\e[0;31mPlease implement me at fpu.c\e[0m\n");
+		//	assert(0);
 			overflow = true;
 		}
 	} else if(((sig_grs >> (23 + 3)) == 0) && exp > 0) {
@@ -289,8 +295,9 @@ uint32_t internal_float_mul(uint32_t b, uint32_t a) {
 	uint32_t exp_res = 0;
 
 	/* TODO: exp_res = ? leave space for GRS bits. */
-	printf("\e[0;31mPlease implement me at fpu.c\e[0m\n");
-	assert(0);
+	exp_res = fa.exponent + fb.exponent -20 - 127;
+  //printf("\e[0;31mPlease implement me at fpu.c\e[0m\n");
+	//assert(0);
 	return internal_normalize(f.sign, exp_res, sig_res);
 }
 
