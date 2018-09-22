@@ -20,14 +20,22 @@ inline uint32_t internal_normalize(uint32_t sign, int32_t exp, uint64_t sig_grs)
 			) {
 
 			/* TODO: shift right, pay attention to sticky bit*/
-			printf("\e[0;31mPlease implement me at fpu.c\e[0m\n");
-			assert(0);
+      // sig_grs = sig_grs >> 1;
+      exp++;
+	    uint32_t sticky = 0;
+			sticky = sticky | (sig_grs & 0x1);
+			sig_grs = sig_grs >> 1;
+			sig_grs |= sticky;
+		//	printf("\e[0;31mPlease implement me at fpu.c\e[0m\n");
+		//	assert(0);
 		}
 
 		if(exp >= 0xff) {
 			/* TODO: assign the number to infinity */
-			printf("\e[0;31mPlease implement me at fpu.c\e[0m\n");
-			assert(0);
+      exp = 0xff;
+      sig_grs = 0;
+		//	printf("\e[0;31mPlease implement me at fpu.c\e[0m\n");
+		//	assert(0);
 			overflow = true;
 		}
 		if(exp == 0) {
@@ -47,14 +55,20 @@ inline uint32_t internal_normalize(uint32_t sign, int32_t exp, uint64_t sig_grs)
 		// normalize toward left
 		while(((sig_grs >> (23 + 3)) == 0) && exp > 0) {
 			/* TODO: shift left */
-			printf("\e[0;31mPlease implement me at fpu.c\e[0m\n");
-			assert(0);
+      sig_grs = sig_res << 1;
+      exp --;
+		//	printf("\e[0;31mPlease implement me at fpu.c\e[0m\n");
+		//	assert(0);
 		}
 		if(exp == 0) {
 			// denormal
 			/* TODO: shift right, pay attention to sticky bit*/
-			printf("\e[0;31mPlease implement me at fpu.c\e[0m\n");
-			assert(0);
+      uint32_t sticky = 0;
+			sticky = sticky | (sig_grs & 0x1);
+			sig_grs = sig_grs >> 1;
+			sig_grs |= sticky;
+		//	printf("\e[0;31mPlease implement me at fpu.c\e[0m\n");
+		//	assert(0);
 		}
 	} else if(exp == 0 && sig_grs >> (23 + 3) == 1) {
 		// two denormals result in a normal
@@ -63,6 +77,29 @@ inline uint32_t internal_normalize(uint32_t sign, int32_t exp, uint64_t sig_grs)
 
 	if(!overflow) {
 		/* TODO: round up and remove the GRS bits */
+    //GRS is the last three bits.
+    uint32_t GRS = sig_grs & 0x7;
+    if(GRS > 4)
+    {
+      sig_grs = sig_grs >> 3 + 1;
+    }
+    else if(GRS < 4)
+    {
+      sig_grs = sig_grs >> 3;
+    }
+    else if(GRS == 4)
+    {
+      if((sig_grs >> 3)%2 == 0)
+      {
+        sig_grs = sig_grs >> 3;
+      }
+      else
+      {
+        sig_grs = sig_grs >> 3 + 1;
+      }
+    }
+
+    
 		printf("\e[0;31mPlease implement me at fpu.c\e[0m\n");
 		assert(0);
 	}
