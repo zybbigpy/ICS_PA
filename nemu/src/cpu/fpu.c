@@ -55,7 +55,7 @@ inline uint32_t internal_normalize(uint32_t sign, int32_t exp, uint64_t sig_grs)
 		// normalize toward left
 		while(((sig_grs >> (23 + 3)) == 0) && exp > 0) {
 			/* TODO: shift left */
-      sig_grs = sig_res << 1;
+      sig_grs = sig_grs << 1;
       exp --;
 		//	printf("\e[0;31mPlease implement me at fpu.c\e[0m\n");
 		//	assert(0);
@@ -81,7 +81,7 @@ inline uint32_t internal_normalize(uint32_t sign, int32_t exp, uint64_t sig_grs)
     uint32_t GRS = sig_grs & 0x7;
     if(GRS > 4)
     {
-      sig_grs = sig_grs >> 3 + 1;
+      sig_grs = (sig_grs >> 3) + 1;
     }
     else if(GRS < 4)
     {
@@ -95,7 +95,7 @@ inline uint32_t internal_normalize(uint32_t sign, int32_t exp, uint64_t sig_grs)
       }
       else
       {
-        sig_grs = sig_grs >> 3 + 1;
+        sig_grs = (sig_grs >> 31) + 1;
       }
     }
     // boundary condition 0xffffff+1 0r 0x7fffff+1
@@ -113,7 +113,7 @@ inline uint32_t internal_normalize(uint32_t sign, int32_t exp, uint64_t sig_grs)
         exp++;
       }
     }
-    if(sig_grs == 0x800000 && exp = 0)
+    if(sig_grs == 0x800000 && exp == 0)
     {
       exp++;
     }
