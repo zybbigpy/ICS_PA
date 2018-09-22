@@ -98,7 +98,7 @@ inline uint32_t internal_normalize(uint32_t sign, int32_t exp, uint64_t sig_grs)
       }
       else
       {
-        sig_grs = (sig_grs >> 31) + 1;
+        sig_grs = (sig_grs >> 3) + 1;
       }
     }
     // boundary condition 0xffffff+1 0r 0x7fffff+1
