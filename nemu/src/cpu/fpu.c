@@ -9,7 +9,7 @@ FLOAT p_zero, n_zero, p_inf, n_inf, p_nan, n_nan;
 // the last three bits of the significand are reserved for the GRS bits
 inline uint32_t internal_normalize(uint32_t sign, int32_t exp, uint64_t sig_grs) {
 
-  printf("sign=%x,exp =%x , sig_grs =%x ",sign, exp, sig_grs);
+  printf("sign=%x,exp =%x , sig_grs =%lx ",sign, exp, sig_grs);
 	// normalization
 	bool overflow = false; // true if the result is INFINITY or 0 during normalize
 
