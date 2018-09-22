@@ -75,7 +75,8 @@ inline uint32_t internal_normalize(uint32_t sign, int32_t exp, uint64_t sig_grs)
 		// two denormals result in a normal
 		exp++;
 	}
-
+ 
+  printf("sign = %x,exp = %u , sig_grs = %llx  !RESULT AFTER!",sign, exp, sig_grs);
 	if(!overflow) {
 		/* TODO: round up and remove the GRS bits */
     //GRS is the last three bits.
