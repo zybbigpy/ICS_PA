@@ -82,7 +82,7 @@ inline uint32_t internal_normalize(uint32_t sign, int32_t exp, uint64_t sig_grs)
 		exp++;
 	}
  
-  printf("sign = %x,exp = %u , sig_grs = %llx  !RESULT AFTER!",sign, exp, sig_grs);
+  //printf("sign = %x,exp = %u , sig_grs = %llx  !RESULT AFTER NORM_1!",sign, exp, sig_grs);
 	if(!overflow) {
 		/* TODO: round up and remove the GRS bits */
     //GRS is the last three bits.
@@ -130,7 +130,7 @@ inline uint32_t internal_normalize(uint32_t sign, int32_t exp, uint64_t sig_grs)
 		//assert(0);
 	}
 
-  printf("sign = %x,exp = %u , sig_grs = %llx  !RESULT AFTER22!",sign, exp, sig_grs);
+  //printf("sign = %x,exp = %u , sig_grs = %llx  !RESULT AFTER NORM_2!",sign, exp, sig_grs);
 
 	FLOAT f;
 	f.sign = sign;
