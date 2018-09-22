@@ -9,6 +9,7 @@ FLOAT p_zero, n_zero, p_inf, n_inf, p_nan, n_nan;
 // the last three bits of the significand are reserved for the GRS bits
 inline uint32_t internal_normalize(uint32_t sign, int32_t exp, uint64_t sig_grs) {
 
+  printf("sign=\x,exp =\x , sig_grs =\x ",sign, exp, sig_grs);
 	// normalization
 	bool overflow = false; // true if the result is INFINITY or 0 during normalize
 
@@ -39,13 +40,13 @@ inline uint32_t internal_normalize(uint32_t sign, int32_t exp, uint64_t sig_grs)
 			overflow = true;
 		}
 		if(exp == 0) {
-			// we have a denormal here, the exponent is 0, but means 2^-126, 
+			// we have a denormal here, the exponent is 0, but means 2^-126,
 			// as a result, the significand should shift right once more
 			/* TODO: shift right, pay attention to sticky bit*/
 			printf("\e[0;31mPlease implement me at fpu.c\e[0m\n");
 			assert(0);
 		}
-		if(exp < 0) { 
+		if(exp < 0) {
 			/* TODO: assign the number to zero */
 			printf("\e[0;31mPlease implement me at fpu.c\e[0m\n");
 			assert(0);
@@ -178,10 +179,10 @@ uint32_t internal_float_add(uint32_t b, uint32_t a) {
 	uint32_t shift = 0;
 
 	/* TODO: shift = ? */
-  
+
   shift = (fb.exponent==0?fb.exponent+1:fb.exponent)-(fa.exponent==0?fa.exponent+1:fa.exponent);
-  
-  
+
+
 //  printf("\e[0;31mPlease implement me at fpu.c\e[0m\n");
 //	assert(0);
 	assert(shift >= 0);
@@ -281,7 +282,7 @@ uint32_t internal_float_mul(uint32_t b, uint32_t a) {
 	if(fa.exponent == 0) fa.exponent ++;
 	if(fb.exponent == 0) fb.exponent ++;
 
-	sig_res = sig_a * sig_b; // 24b * 24b 
+	sig_res = sig_a * sig_b; // 24b * 24b
 	uint32_t exp_res = 0;
 
 	/* TODO: exp_res = ? leave space for GRS bits. */
@@ -439,7 +440,7 @@ void fpu_xch(uint32_t idx) {
 	uint32_t temp = fpu.regStack[fpu.status.top].val;
 	fpu.regStack[fpu.status.top].val = fpu.regStack[idx].val;
 	fpu.regStack[idx].val = temp;
-	
+
 }
 
 void fpu_copy(uint32_t idx) {
@@ -456,7 +457,7 @@ void fpu_cmp(uint32_t idx) {
 		//printf("f %f > %f\n", *a, *b);
 		//printf("f %x > %x\n", *((uint32_t *)a), *((uint32_t *)b));
 	} else if(*a < *b) {
-		fpu.status.c0 = 1; 
+		fpu.status.c0 = 1;
 		fpu.status.c2 = fpu.status.c3 = 0;
 		//printf("f %f < %f\n", *a, *b);
 	} else {
