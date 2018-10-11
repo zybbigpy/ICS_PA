@@ -2,7 +2,7 @@
 
 static void instr_excute_1op(){
   operand_read(&opr_src);
-  cpu.esp -=4;
+  cpu.esp -= 4;
   opr_dest.type = OPR_MEM;
   opr_dest.addr = cpu.esp;
   oprr_dest.val = opr_src.val;
