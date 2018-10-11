@@ -9,4 +9,4 @@ static void instr_execute_1op() {
   operand_write(&opr_dest);
 }
 
-make_instr_impl_1op(push_r_l)
+make_instr_impl_1op(push, r, l)
