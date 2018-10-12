@@ -5,7 +5,7 @@ static void instr_execute_2op() {
   operand_read(&opr_dest);
   printf("opr_src-val is:  0x%x\n",opr_src.val);
   printf("opr_dest-val is: 0x%x\n",opr_dest.val);
-  uint32_t flag = alu_sub(opr_src.val,opr_dest.val,opr_dest.data_size);
+  alu_sub(opr_src.val,opr_dest.val,opr_dest.data_size);
   //printf("after cmp opr_dest-val is: 0x%x\n",opr_dest.val);
 
 }
