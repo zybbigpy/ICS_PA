@@ -23,6 +23,7 @@ extern uint8_t data_size;
 #include "cpu/instr/x87.h"
 
 /* TODO: add more instructions here */
+#include "cpu/instr/cmp.h"
 #include "cpu/instr/push.h"
 #include "cpu/instr/sub.h"
 #include "cpu/instr/sbb.h"
