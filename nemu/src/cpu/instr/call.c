@@ -10,7 +10,7 @@ make_instr_func(call_near)
     help.addr = cpu.esp;
     operand_write(&help);
 
-    //eip - rel32
+    //eip - rel32(or rel 16)
     OPERAND rel;
     rel.type = OPR_IMM;
     rel.sreg = SREG_CS;
