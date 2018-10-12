@@ -31,6 +31,6 @@ extern uint8_t data_size;
 #include "cpu/instr/or.h"
 #include "cpu/instr/xor.h"
 #include "cpu/instr/and.h"
-#include "cpu/instr/cmp.h"
+
 
 #endif
