@@ -19,12 +19,12 @@ make_instr_func(jmp_near) {
         return 1 + data_size / 8;
 }
 
-make_instr_func(jump_short)
+make_instr_func(jmp_short)
 {
         //rel8
         OPERAND rel;
         rel.type = OPR_IMM;
-	rel.sreg = SREG_CS;
+	//rel.sreg = SREG_CS;
         rel.data_size = 8;
         rel.addr = eip + 1;
 
