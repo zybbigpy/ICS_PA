@@ -10,10 +10,10 @@ make_instr_func(call_near)
     help.addr = cpu.esp;
     operand_write(&help);
 
-    //eip - rel32(or rel 16)
+    //eip - rel32(or rel 16) realize like jmp_near??
     OPERAND rel;
     rel.type = OPR_IMM;
-    rel.sreg = SREG_CS;
+    //rel.sreg = SREG_CS;
     printf("datasize is %d\n",data_size);
     rel.data_size = data_size;
     rel.addr = eip + 1;
