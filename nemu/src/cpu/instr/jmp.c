@@ -1,6 +1,7 @@
 #include "cpu/instr.h"
 
 make_instr_func(jmp_near) {
+        //rel 8 or 16
         OPERAND rel;
         rel.type = OPR_IMM;
 	rel.sreg = SREG_CS;
@@ -20,9 +21,10 @@ make_instr_func(jmp_near) {
 
 make_instr_func(jump_short)
 {
+        //rel8
         OPERAND rel;
         rel.type = OPR_IMM;
-	rel.sreg = SREG_CS;
+	//rel.sreg = SREG_CS;
         rel.data_size = 8;
         rel.addr = eip + 1;
 
