@@ -13,6 +13,7 @@ make_instr_func(jmp_near) {
 	print_asm_1("jmp", "", 2, &rel);
         printf("offset is %d/n",offset);
 	cpu.eip += offset;
+        printf("eip is 0x%x\n",cpu.eip);
 
         return 1 + data_size / 8;
 }
