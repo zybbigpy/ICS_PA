@@ -6,7 +6,7 @@ static void instr_execute_2op() {
   printf("opr_src-val is:  0x%x\n",opr_src.val);
   printf("opr_dest-val is: 0x%x\n",opr_dest.val);
   opr_dest.val = alu_sbb(opr_src.val,opr_dest.val,opr_dest.data_size);
-  printf("after sub opr_dest-val is: 0x%x\n",opr_dest.val);
+  printf("after sbb opr_dest-val is: 0x%x\n",opr_dest.val);
   operand_write(&opr_dest);
 }
 
