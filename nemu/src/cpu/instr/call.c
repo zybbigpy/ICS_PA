@@ -1,18 +1,28 @@
 #include "cpu/instr.h"
-make_instr_func(jmp_near) {
-        OPERAND rel;
-        rel.type = OPR_IMM;
-	rel.sreg = SREG_CS;
-        rel.data_size = data_size;
-        rel.addr = eip + 1;
+make_instr_func(call_near)
+{
+    //push eip
+    OPERAND help;
+    cpu.esp -= 4;//maybe 2??
+    help.type = OPR_MEM;
+    help.val = cpu.eip;
+    help.addr = cpu.esp;
+    operand_write(&help);
 
-        operand_read(&rel);
-        printf("jmp_near val is 0x%x/n",rel.val);
-	int offset = sign_ext(rel.val, data_size);
-	print_asm_1("jmp", "", 2, &rel);
-        printf("offset is %d/n",offset);
-	cpu.eip += offset;
-        printf("eip is 0x%x\n",cpu.eip);
+    //eip - rel32
+    OPERAND rel;
+    rel.type = OPR_IMM;
+    rel.sreg = SREG_CS;
+    printf("datasize is %d\n",data_size);
+    rel.data_size = data_size;
+    rel.addr = eip + 1;
 
-        return 1 + data_size / 8;
+    operand_read(&rel);
+    printf("call_near val is 0x%x\n", rel.val);
+    int offset = sign_ext(rel.val, data_size);
+    printf("offset is %d\n", offset);
+    cpu.eip += offset;
+    printf("eip is 0x%x\n", cpu.eip);
+
+    return 1 + data_size / 8;
 }
