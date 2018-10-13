@@ -1,3 +1,4 @@
+#include "cpu/instr.h"
 instr_func __ref_opcode_entry[256] = {
 /* 0x00 - 0x03*/	__ref_add_r2rm_b, __ref_add_r2rm_v, __ref_add_rm2r_b, __ref_add_rm2r_v,
 /* 0x04 - 0x07*/	__ref_add_i2a_b, __ref_add_i2a_v, inv, inv,
