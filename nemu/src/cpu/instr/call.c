@@ -6,7 +6,7 @@ make_instr_func(call_near)
     cpu.esp -= 4;//maybe 2??
     help.type = OPR_MEM;
     help.data_size = 32;
-    help.val = cpu.eip;
+    help.val = cpu.eip+1+data_size/8;
     help.addr = cpu.esp;
     operand_write(&help);
 
