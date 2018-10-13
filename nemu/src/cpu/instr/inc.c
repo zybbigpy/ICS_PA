@@ -1,4 +1,5 @@
 #include "cpu/instr.h"
+
 void setPF(uint32_t result)
 {
     int flag = 0;
