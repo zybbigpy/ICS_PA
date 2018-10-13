@@ -24,6 +24,7 @@ make_instr_func(call_near)
     printf("offset is %d\n", offset);
     cpu.eip += offset;
     printf("eip is 0x%x\n", cpu.eip);
+    
 
     return 1 + data_size / 8;
 }
