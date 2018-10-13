@@ -55,6 +55,7 @@ void exec(uint32_t n) {
 		instr_len = exec_inst();
 		printf("!!len is %d\n",instr_len);
 		cpu.eip += instr_len;
+		printf("!!cpu.eip is 0x%x\n",cpu.eip);
 		n--;
 
 		if(hit_break_rerun) {
