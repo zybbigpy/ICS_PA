@@ -25,6 +25,7 @@ extern uint8_t data_size;
 /* TODO: add more instructions here */
 #include "cpu/instr/cmp.h"
 #include "cpu/instr/push.h"
+#include "cpu/instr/pop.h"
 #include "cpu/instr/sub.h"
 #include "cpu/instr/sbb.h"
 #include "cpu/instr/add.h"
