@@ -13,17 +13,17 @@ make_instr_func(call_near)
     //eip - rel32(or rel 16) realize like jmp_near??
     OPERAND rel;
     rel.type = OPR_IMM;
-    rel.sreg = SREG_CS;//is it necessary??
-    printf("datasize is %d\n",data_size);
+    //rel.sreg = SREG_CS;//is it necessary??
+    //printf("datasize is %d\n",data_size);
     rel.data_size = data_size;
     rel.addr = eip + 1;
 
     operand_read(&rel);
-    printf("call_near val is 0x%x\n", rel.val);
+    //printf("call_near val is 0x%x\n", rel.val);
     int offset = sign_ext(rel.val, data_size);
-    printf("offset is %d\n", offset);
+    //printf("offset is %d\n", offset);
     cpu.eip += offset;
-    printf("eip is 0x%x\n", cpu.eip);
+    //printf("eip is 0x%x\n", cpu.eip);
     
 
     return 1 + data_size / 8;
