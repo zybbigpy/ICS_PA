@@ -10,6 +10,7 @@ make_instr_func(lea)
     operand_read(&M);
     R.val = M.addr;
     operand_write(&R);
+    print_asm_2("lea", "", len, &M, &R);
 
     return len;
 }
