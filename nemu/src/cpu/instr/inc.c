@@ -69,11 +69,12 @@ void setOF_add(uint32_t result, uint32_t src, uint32_t dest, size_t data_size)
 static void instr_execute_1op()
 {
     operand_read(&opr_src);
-    opr_src.val += 1;
-    setZF(res, data_size);
+    uint32_t res = opr_src.val + 1;
+    setZF(res, opr_src.data_size);
     setPF(res);
-    setSF(res, data_size);
-    setOF_add(res, src, dest, data_size);
+    setSF(res, opr_src.data_size);
+    setOF_add(res, 1, opr_src.val, opr_src.data_size);
+    opr_src.val = res;
 
     operand_write(&opr_src);
 }
