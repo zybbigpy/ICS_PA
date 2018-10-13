@@ -11,7 +11,7 @@ nemu: update
 
 run: nemu
 	$(call git_commit, "run")
-	./nemu/nemu --testcase add-longlong
+	./nemu/nemu --testcase add
 
 run-kernel: nemu
 	$(call git_commit, "run-kernel")
