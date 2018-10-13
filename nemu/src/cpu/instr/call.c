@@ -3,10 +3,10 @@ make_instr_func(call_near)
 {
     //push eip
     OPERAND help;
-    cpu.esp -= 4;//maybe 2??
+    cpu.esp -= data_size / 8; //maybe 2??
     help.type = OPR_MEM;
-    help.data_size = 32;
-    help.val = cpu.eip+1+data_size/8;
+    help.data_size = data_size;
+    help.val = cpu.eip + 1 + data_size / 8;
     help.addr = cpu.esp;
     operand_write(&help);
 
@@ -24,7 +24,6 @@ make_instr_func(call_near)
     //printf("offset is %d\n", offset);
     cpu.eip += offset;
     //printf("eip is 0x%x\n", cpu.eip);
-    
 
     return 1 + data_size / 8;
 }
