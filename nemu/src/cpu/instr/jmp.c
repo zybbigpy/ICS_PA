@@ -42,7 +42,7 @@ make_instr_func(jmp_short)
 make_instr_func(jmp_near_indirect)
 {
         OPERAND rm;
-        rm.data_size =data_size;
+        rm.data_size = data_size;
         int len = 1;
 	len += modrm_rm(eip + 1, &rm);
         cpu.eip = rm.val;
