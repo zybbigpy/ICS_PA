@@ -13,8 +13,8 @@ instr_func opcode_entry[256] = {
 /* 0x24 - 0x27*/	and_i2a_b, and_i2a_v, inv, inv,
 /* 0x18 - 0x1b*/	sub_r2rm_b, sub_r2rm_v, sub_rm2r_b, sub_rm2r_v,
 /* 0x1c - 0x1f*/	sub_i2a_b, sub_i2a_v, inv, inv,
-/* 0x30 - 0x33*/	__ref_xor_r2rm_b, __ref_xor_r2rm_v, __ref_xor_rm2r_b, __ref_xor_rm2r_v,
-/* 0x34 - 0x37*/	__ref_xor_i2a_b, __ref_xor_i2a_v, inv, inv,
+/* 0x30 - 0x33*/	xor_r2rm_b, xor_r2rm_v, xor_rm2r_b, xor_rm2r_v,
+/* 0x34 - 0x37*/	xor_i2a_b, xor_i2a_v, inv, inv,
 /* 0x38 - 0x3b*/	cmp_r2rm_b, cmp_r2rm_v, cmp_rm2r_b, cmp_rm2r_v,
 /* 0x3c - 0x3f*/	cmp_i2a_b, cmp_i2a_v, inv, inv,
 /* 0x40 - 0x43*/	inc_r_v, inc_r_v, inc_r_v, inc_r_v,
@@ -69,15 +69,15 @@ instr_func opcode_entry[256] = {
 
 /* 0x80 */
 instr_func group_1_b_entry[8] =
-{__ref_add_i2rm_b, __ref_or_i2rm_b, __ref_adc_i2rm_b, __ref_sbb_i2rm_b, __ref_and_i2rm_b, __ref_sub_i2rm_b, __ref_xor_i2rm_b, __ref_cmp_i2rm_b};
+{add_i2rm_b, __ref_or_i2rm_b, __ref_adc_i2rm_b, __ref_sbb_i2rm_b, __ref_and_i2rm_b, __ref_sub_i2rm_b, __ref_xor_i2rm_b, __ref_cmp_i2rm_b};
 
 /* 0x81 */
 instr_func group_1_v_entry[8] =
-{__ref_add_i2rm_v, __ref_or_i2rm_v, __ref_adc_i2rm_v, __ref_sbb_i2rm_v, __ref_and_i2rm_v, __ref_sub_i2rm_v, __ref_xor_i2rm_v, __ref_cmp_i2rm_v};
+{add_i2rm_v, __ref_or_i2rm_v, __ref_adc_i2rm_v, __ref_sbb_i2rm_v, __ref_and_i2rm_v, __ref_sub_i2rm_v, __ref_xor_i2rm_v, __ref_cmp_i2rm_v};
 
 /* 0x83 */
 instr_func group_1_bv_entry[8] =
-{__ref_add_i2rm_bv, __ref_or_i2rm_bv, __ref_adc_i2rm_bv, __ref_sbb_i2rm_bv, __ref_and_i2rm_bv, __ref_sub_i2rm_bv, __ref_xor_i2rm_bv, __ref_cmp_i2rm_bv};
+{add_i2rm_bv, __ref_or_i2rm_bv, __ref_adc_i2rm_bv, __ref_sbb_i2rm_bv, __ref_and_i2rm_bv, __ref_sub_i2rm_bv, __ref_xor_i2rm_bv, __ref_cmp_i2rm_bv};
 
 /* 0xc0 */
 instr_func group_2_b_entry[8] =
