@@ -6,7 +6,7 @@ static void instr_execute_2op()
   operand_read(&opr_dest);
   //printf("opr_src-val is:  0x%x\n", opr_src.val);
   //printf("opr_dest-val is: 0x%x\n", opr_dest.val);
-  opr_dest.val = alu_adc(opr_src.val, opr_dest.val, opr_dest.data_size);
+  opr_dest.val = alu_adc(sign_ext(opr_src.val, opr_src.data_size), opr_dest.val, opr_dest.data_size);
   //printf("after adc opr_dest-val is: 0x%x\n", opr_dest.val);
   operand_write(&opr_dest);
 }
