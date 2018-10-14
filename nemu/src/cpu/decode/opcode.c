@@ -103,12 +103,12 @@ instr_func group_2_cv_entry[8] =
 {inv, inv, inv, inv, shl_c2rm_bv, inv, shr_c2rm_bv, sar_c2rm_bv};
 
 /* 0xf6 */
-instr_func __ref_group_3_b_entry[8] =
+instr_func group_3_b_entry[8] =
 {inv, inv, inv, inv, mul_rm2a_b, imul_rm2a_b, div_rm2a_b, idiv_rm2a_b};
 
 
 /* 0xf7 */
-instr_func __ref_group_3_v_entry[8] =
+instr_func group_3_v_entry[8] =
 {inv, inv, inv, inv, mul_rm2a_v, imul_rm2a_v, div_rm2a_v, idiv_rm2a_v};
 
 /* 0xff */
