@@ -38,6 +38,7 @@ extern uint8_t data_size;
 #include "cpu/instr/jcc.h"
 #include "cpu/instr/lea.h"
 #include "cpu/instr/inc.h"
+#include "cpu/instr/dec.h"
 #include "cpu/instr/test.h"
 
 #endif
