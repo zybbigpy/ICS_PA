@@ -11,11 +11,11 @@ nemu: update
 
 run: nemu
 	$(call git_commit, "run")
-	./nemu/nemu --testcase quick-sort
+	./nemu/nemu --testcase sub-longlong
 
 run-kernel: nemu
 	$(call git_commit, "run-kernel")
-	./nemu/nemu --kernel --sub-longlong
+	./nemu/nemu --kernel -- add
 
 #make all if you do not want to participate in the survey
 all: update
