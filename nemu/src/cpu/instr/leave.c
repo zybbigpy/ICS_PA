@@ -2,6 +2,7 @@
 
 make_instr_func(leave)
 {
+    // ebp -> esp
     cpu.esp = cpu.ebp;
     OPERAND help;
     //pop ebp(old ebp value in stack)
