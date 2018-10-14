@@ -23,9 +23,10 @@ extern uint8_t data_size;
 #include "cpu/instr/x87.h"
 
 /* TODO: add more instructions here */
-#include "cpu/instr/cmp.h"
 #include "cpu/instr/push.h"
 #include "cpu/instr/pop.h"
+#include "cpu/instr/cmp.h"
+
 #include "cpu/instr/sub.h"
 #include "cpu/instr/sbb.h"
 #include "cpu/instr/add.h"
@@ -43,6 +44,8 @@ extern uint8_t data_size;
 #include "cpu/instr/test.h"
 #include "cpu/instr/leave.h"
 #include "cpu/instr/not.h"
+#include "cpu/instr/imul.h"
+#include "cpu/instr/idiv.h"
 #include "cpu/instr/imul.h"
 #include "cpu/instr/idiv.h"
 
