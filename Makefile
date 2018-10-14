@@ -11,7 +11,7 @@ nemu: update
 
 run: nemu
 	$(call git_commit, "run")
-	./nemu/nemu --testcase if-else
+	./nemu/nemu --testcase quick-sort
 
 run-kernel: nemu
 	$(call git_commit, "run-kernel")
