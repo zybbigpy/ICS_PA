@@ -1,5 +1,4 @@
 #include "cpu/instr.h"
-
 instr_func opcode_entry[256] = {
 /* 0x00 - 0x03*/	add_r2rm_b, add_r2rm_v, add_rm2r_b, add_rm2r_v,
 /* 0x04 - 0x07*/	add_i2a_b, add_i2a_v, inv, inv,
@@ -9,12 +8,12 @@ instr_func opcode_entry[256] = {
 /* 0x14 - 0x17*/	adc_i2a_b, adc_i2a_v, inv, inv,
 /* 0x18 - 0x1b*/	sbb_r2rm_b, sbb_r2rm_v, sbb_rm2r_b, sbb_rm2r_v,
 /* 0x1c - 0x1f*/	sbb_i2a_b, sbb_i2a_v, inv, inv,
-/* 0x20 - 0x23*/	and_r2rm_b, and_r2rm_v, and_rm2r_b, and_rm2r_v,
+/* 0x20 - 0x23*/	and_r2rm_b, and_r2rm_v, and_rm2r_b,and_rm2r_v,
 /* 0x24 - 0x27*/	and_i2a_b, and_i2a_v, inv, inv,
-/* 0x18 - 0x1b*/	sub_r2rm_b, sub_r2rm_v, sub_rm2r_b, sub_rm2r_v,
-/* 0x1c - 0x1f*/	sub_i2a_b, sub_i2a_v, inv, inv,
+/* 0x28 - 0x2b*/	sub_r2rm_b, sub_r2rm_v, sub_rm2r_b, sub_rm2r_v,
+/* 0x2c - 0x2f*/	sub_i2a_b, sub_i2a_v, inv, inv,
 /* 0x30 - 0x33*/	xor_r2rm_b, xor_r2rm_v, xor_rm2r_b, xor_rm2r_v,
-/* 0x34 - 0x37*/	xor_i2a_b, xor_i2a_v, inv, inv,
+/* 0x34 - 0x37*/	xor_i2a_b, or_i2a_v, inv, inv,
 /* 0x38 - 0x3b*/	cmp_r2rm_b, cmp_r2rm_v, cmp_rm2r_b, cmp_rm2r_v,
 /* 0x3c - 0x3f*/	cmp_i2a_b, cmp_i2a_v, inv, inv,
 /* 0x40 - 0x43*/	inc_r_v, inc_r_v, inc_r_v, inc_r_v,
@@ -73,11 +72,11 @@ instr_func group_1_b_entry[8] =
 
 /* 0x81 */
 instr_func group_1_v_entry[8] =
-{add_i2rm_v, or_i2rm_v, adc_i2rm_v,sbb_i2rm_v, and_i2rm_v, sub_i2rm_v, xor_i2rm_v, cmp_i2rm_v};
+{add_i2rm_v, or_i2rm_v, adc_i2rm_v, sbb_i2rm_v, and_i2rm_v, sub_i2rm_v, xor_i2rm_v, __ref_cmp_i2rm_v};
 
 /* 0x83 */
 instr_func group_1_bv_entry[8] =
-{add_i2rm_bv, or_i2rm_bv,adc_i2rm_bv, sbb_i2rm_bv, and_i2rm_bv, sub_i2rm_bv, xor_i2rm_bv, __ref_cmp_i2rm_bv};
+{add_i2rm_bv, or_i2rm_bv, adc_i2rm_bv, sbb_i2rm_bv, __ref_and_i2rm_bv, sub_i2rm_bv, xor_i2rm_bv, cmp_i2rm_bv};
 
 /* 0xc0 */
 instr_func group_2_b_entry[8] =
@@ -109,7 +108,7 @@ instr_func group_3_b_entry[8] =
 
 /* 0xf7 */
 instr_func group_3_v_entry[8] =
-{inv, inv, inv, inv, inv, inv, inv, inv};
+{inv, inv, __ref_not_rm_v, inv, inv, inv, inv, inv};
 
 /* 0xff */
 instr_func group_5_indirect_entry[8] =
@@ -187,10 +186,10 @@ instr_func opcode_2_byte_entry[256] = {
 /* 0x84 - 0x87*/        je_near, jne_near, jna_near, ja_near,
 /* 0x88 - 0x8b*/        js_near, jns_near, jp_near, jnp_near,
 /* 0x8c - 0x8f*/        jl_near, jge_near, jle_near, jg_near,
-/* 0x90 - 0x93*/        inv, inv, inv, inv,
-/* 0x94 - 0x97*/        inv, inv, inv, inv,
-/* 0x98 - 0x9b*/        inv, inv, inv, inv,
-/* 0x9c - 0x9f*/        inv, inv, inv, inv,
+/* 0x90 - 0x93*/        seto_b, setno_b, setc_b, setae_b,
+/* 0x94 - 0x97*/        sete_b, setne_b, setbe_b, seta_b,
+/* 0x98 - 0x9b*/        sets_b, setns_b, setp_b, setnp_b,
+/* 0x9c - 0x9f*/        setl_b, setge_b, setle_b, setg_b,
 /* 0xa0 - 0xa3*/        inv, inv, inv, bt_r2rm_v,
 /* 0xa4 - 0xa7*/        inv, inv, inv, inv,
 /* 0xa8 - 0xab*/        inv, inv, inv, inv,
@@ -216,5 +215,3 @@ instr_func opcode_2_byte_entry[256] = {
 /* 0xf8 - 0xfb*/        inv, inv, inv, inv,
 /* 0xfc - 0xff*/        inv, inv, inv, inv,
 };
-
-
