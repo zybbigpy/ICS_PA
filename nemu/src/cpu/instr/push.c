@@ -4,7 +4,8 @@ static void instr_execute_1op()
 {
   OPERAND help;
   operand_read(&opr_src);
-  //esp-4 or esp-2
+  //  esp - 4 or esp - 2 (no esp - 1)
+  //  use oprsrc.datasize is wrong for the case of imm8 
   cpu.esp -= data_size / 8;
   help.addr = cpu.esp;
   help.data_size = data_size;
