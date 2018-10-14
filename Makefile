@@ -15,7 +15,7 @@ run: nemu
 
 run-kernel: nemu
 	$(call git_commit, "run-kernel")
-	./nemu/nemu --kernel --testcase add
+	./nemu/nemu --kernel --sub-longlong
 
 #make all if you do not want to participate in the survey
 all: update
