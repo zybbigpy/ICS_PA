@@ -11,7 +11,7 @@ nemu: update
 
 run: nemu
 	$(call git_commit, "run")
-	./nemu/nemu --testcase movsx
+	./nemu/nemu --testcase fib
 
 run-kernel: nemu
 	$(call git_commit, "run-kernel")
