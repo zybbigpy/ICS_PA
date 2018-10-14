@@ -24,6 +24,10 @@ make_instr_func(ret_near_imm16)
     cpu.eip = help.val;
     cpu.esp += data_size / 8;
     //esp + imm
+    OPERAND imm;
+    imm.type = OPR_IMM;
+    imm.addr = eip+1;
+    imm.data_size = 16;
     uint32_t imm = instr_fetch(eip + 1, 2);
     cpu.esp += imm;
     return 0; //len?=0s
