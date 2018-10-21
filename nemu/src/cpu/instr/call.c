@@ -11,7 +11,7 @@ make_instr_func(call_near)
     //write will do eip(ip) -> stack
     operand_write(&help);
 
-    //eip - rel32(or rel 16) realize like jmp_near??
+    //eip - rel32(or rel 16) realize like jmp_near
     OPERAND rel;
     rel.type = OPR_IMM;
     //rel.sreg = SREG_CS;//is it necessary??
@@ -40,4 +40,13 @@ make_instr_func(call_near_indirect)
     help.addr = cpu.esp;
     //write will do eip(ip) -> stack
     operand_write(&help);
+
+    //realize like jmp_near_indirect
+    OPERAND rm;
+    rm.data_size = data_size;
+    int len = 1;
+    // write addr and type for opr_rm
+    len += modrm_rm(eip + 1, &rm);
+    operand_read(&rm);
+    cpu.eip = rm.val;
 }
