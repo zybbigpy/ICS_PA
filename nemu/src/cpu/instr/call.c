@@ -3,14 +3,12 @@ make_instr_func(call_near)
 {
     //push eip
     OPERAND help;
-    cpu.esp -= data_size / 8; //maybe 2??
+    cpu.esp -= data_size / 8;                   //maybe datasize=16
     help.type = OPR_MEM;
     help.data_size = data_size;
-    // eip + len(opcode) + len(data)
-    help.val = cpu.eip + 1 + data_size / 8;
+    help.val = cpu.eip + 1 + data_size / 8;     // eip + len(opcode) + len(data)
     help.addr = cpu.esp;
-    //write will do eip(ip) -> stack
-    operand_write(&help);
+    operand_write(&help);                       //write will do eip(ip) -> stack
 
     //eip - rel32(or rel 16) realize like jmp_near
     OPERAND rel;
