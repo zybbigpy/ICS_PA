@@ -6,6 +6,7 @@ make_instr_func(call_near)
     cpu.esp -= data_size / 8; //maybe 2??
     help.type = OPR_MEM;
     help.data_size = data_size;
+    // eip + len(opcode) + len(data)
     help.val = cpu.eip + 1 + data_size / 8;
     help.addr = cpu.esp;
     //write will do eip(ip) -> stack
