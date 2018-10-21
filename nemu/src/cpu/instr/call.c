@@ -49,4 +49,6 @@ make_instr_func(call_near_indirect)
     len += modrm_rm(eip + 1, &rm);
     operand_read(&rm);
     cpu.eip = rm.val;
+
+    return 0;
 }
