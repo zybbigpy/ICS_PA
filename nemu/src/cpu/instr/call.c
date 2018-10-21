@@ -28,3 +28,16 @@ make_instr_func(call_near)
 
     return 1 + data_size / 8;
 }
+
+make_instr_func(call_near_indirect)
+{
+    //push eip
+    OPERAND help;
+    cpu.esp -= data_size / 8; //maybe 2
+    help.type = OPR_MEM;
+    help.data_size = data_size;
+    help.val = cpu.eip + 1 + data_size / 8;
+    help.addr = cpu.esp;
+    //write will do eip(ip) -> stack
+    operand_write(&help);
+}
