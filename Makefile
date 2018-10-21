@@ -11,11 +11,11 @@ nemu: update
 
 run: nemu
 	$(call git_commit, "run")
-	./nemu/nemu --testcase fact
+	./nemu/nemu --testcase add
 
 run-kernel: nemu
 	$(call git_commit, "run-kernel")
-	./nemu/nemu --kernel -- add
+	./nemu/nemu --kernel --testcase add
 
 #make all if you do not want to participate in the survey
 all: update
