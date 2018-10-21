@@ -32,20 +32,18 @@ make_instr_func(call_near_indirect)
 {
     //push eip
     OPERAND help;
-    cpu.esp -= data_size / 8; //maybe 2
+    cpu.esp -= data_size / 8;               //maybe 2
     help.type = OPR_MEM;
     help.data_size = data_size;
     help.val = cpu.eip + 1 + data_size / 8;
-    help.addr = cpu.esp;
-    //write will do eip(ip) -> stack
-    operand_write(&help);
+    help.addr = cpu.esp;   
+    operand_write(&help);                   //write will do eip(ip) -> stack
 
     //realize like jmp_near_indirect
     OPERAND rm;
     rm.data_size = data_size;
     int len = 1;
-    // write addr and type for opr_rm
-    len += modrm_rm(eip + 1, &rm);
+    len += modrm_rm(eip + 1, &rm);          // write addr and type for opr_rm
     operand_read(&rm);
     cpu.eip = rm.val;
 
