@@ -5,7 +5,7 @@ struct A
 };
 struct Cacheline {
     struct validbit {
-        uint8_t sign:1 ;
+        uint32_t sign:1;
     };
 
 }
