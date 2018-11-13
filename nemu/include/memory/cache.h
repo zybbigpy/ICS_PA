@@ -6,7 +6,7 @@ struct CacheLine {
         //flag
         uint32_t flag:19;
     };
-    // 64byte for content
+    // 64 bytes for content
     uint32_t content[16];
 };
 
