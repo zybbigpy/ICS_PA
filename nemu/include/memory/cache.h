@@ -1,3 +1,4 @@
+#include "nemu.h"
 struct Cacheline {
     struct bitAndFlag {
         //valid bit
@@ -8,3 +9,5 @@ struct Cacheline {
     // 64byte for content
     uint32_t content[16];
 };
+
+void init_cache();
