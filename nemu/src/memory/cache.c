@@ -42,11 +42,17 @@ uint32_t get_paddr_blockAddr(paddr_t paddr) {
 */
 
 uint32_t cache_read(paddr_t paddr, size_t len, CacheLine* cache) {
-    uint32_t flag, setNo, blockAddr, lineNo;
+    uint32_t flag, setNo, blockAddr, lineNoBgn;
     bool hitStatus = false;
     flag = get_paddr_flag(paddr);
     setNo = get_paddr_setNo(paddr);
     blockAddr = get_paddr_blockAddr(paddr);
+    lineNoBgn = setNo * 8;
+    for(size_t i = 0; i < 8; ++i) {
+        if(cache[lineNoBgn+i].bitAndFlag.flag == flag) {
+            
+        }
+    }
 }
 
 // write cache

@@ -7,14 +7,14 @@
 #define CACHE_SIZE_B 1024*64  // 64 kbyte cache
 
 typedef struct {
-    struct bitAndFlag {
+    struct {
         // valid bit
         uint32_t validBit:1;
         // flag
         uint32_t flag:23;
         // no use
         uint32_t dummy:8;
-    };
+    } bitAndFlag;
     // 64 bytes for content
     uint8_t content[CACHELINE_SIZE_B];
 }CacheLine;
