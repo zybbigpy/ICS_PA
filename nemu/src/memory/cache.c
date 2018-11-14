@@ -8,6 +8,6 @@
 CacheLine cache[CACHE_SIZE_B/CACHELINE_SIZE_B];
 
 void init_cache() {
-    memset(cache,0, sizeof(CacheLine)*1024);
-
+    // set all content especially validBit zero
+    memset(cache, 0, sizeof(CacheLine)*1024);
 }
