@@ -21,8 +21,8 @@ uint32_t get_paddr_flag(paddr_t paddr) {
 
 }
 
-// get the valid bit of paddr
-uint32_t get_paddr_bit(paddr_t paddr) {
+// get the set nuber of paddr
+uint32_t get_paddr_setNo(paddr_t paddr) {
 
 }
 
