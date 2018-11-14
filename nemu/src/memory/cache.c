@@ -108,15 +108,15 @@ void cache_write(paddr_t paddr, size_t len, uint32_t data, CacheLine* cache) {
         if(cache[lineNoBgn + i].bitAndFlag.flag == flag) {
             if(cache[lineNoBgn + i].bitAndFlag.validBit == 1) {
                 hitStatus = true;
-                cache[lineNoBgn + i].bitAndFlag.validBit = 0;
+                //cache[lineNoBgn + i].bitAndFlag.validBit = 0;
             }
         }
     }
     if(hitStatus) {
+        init_cache();
         memcpy(hw_mem + paddr, &data, len);
     }
     else {
         memcpy(hw_mem + paddr, &data, len);
     }
-
 }
