@@ -85,7 +85,7 @@ uint32_t cache_read(paddr_t paddr, size_t len, CacheLine* cache) {
     else {
         lineNoChosen = chooseLine(lineNoBgn, cache);
         memcpy(&ret, hw_mem + paddr, len);
-        
+        memcpy(cache[lineNoChosen].content,hw_mem+paddr,BLOCK_SIZE);
 	    return ret;
     }
 
