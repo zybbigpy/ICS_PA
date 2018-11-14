@@ -2,8 +2,8 @@
 #define __CACHE_H__
 
 #include "nemu.h"
-#define CACHELINE_SIZE_B 64   // 64 Byte cacheline
-#define CACHE_SIZE_B 1024*64  // 64 kByte cache
+#define CACHELINE_SIZE_B 64   // 64 byte cacheline
+#define CACHE_SIZE_B 1024*64  // 64 kbyte cache
 
 
 typedef struct {
