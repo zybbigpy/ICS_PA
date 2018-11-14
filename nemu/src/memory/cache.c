@@ -19,15 +19,15 @@ void init_cache() {
 
 // get the flag of paddr
 uint32_t get_paddr_flag(paddr_t paddr) {
-    // first 23 bits of paddr
-    uint32_t flag = paddr >> 9;
+    // first 19 bits of paddr
+    uint32_t flag = paddr >> 13;
     return flag;
 }
 
-// get the set nuber of paddr
+// get the set number of paddr
 uint32_t get_paddr_setNo(paddr_t paddr) {
     // 3 bits in the middle of paddr
-    uint32_t setNo = (paddr >> 6) & (0x7);
+    uint32_t setNo = (paddr >> 6) & (0x7f);
     return setNo;
 }
 
@@ -38,7 +38,7 @@ uint32_t get_paddr_blockAddr(paddr_t paddr) {
     return blockAddr;
 }
 
-uint32_t chooseLine(uint32_t lineNoBgn, ChacheLine* cache) {
+uint32_t chooseLine(uint32_t lineNoBgn, CacheLine* cache) {
     bool find = false; 
     for(size_t i = 0; i < 8; ++i) {
         if(cache[lineNoBgn+i].bitAndFlag.validBit == 0) {
