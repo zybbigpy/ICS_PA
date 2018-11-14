@@ -98,6 +98,10 @@ void cache_write(paddr_t paddr, size_t len, uint32_t data, CacheLine* cache) {
     uint32_t blockAddr = 0;
     uint32_t lineNoBgn = 0;
     bool hitStatus = false;
+
+    if(blockAddr + len >= 64) {
+        hitStatus = true;
+    }
  
     flag = get_paddr_flag(paddr);
     setNo = get_paddr_setNo(paddr);
