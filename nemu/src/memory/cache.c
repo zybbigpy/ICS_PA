@@ -65,6 +65,7 @@ uint32_t cache_read(paddr_t paddr, size_t len, CacheLine* cache) {
 
     if(hitStatus) {
         memcpy(&ret, cache[lineNoHit].content, len);
+        return ret;
     }
     else {
 
