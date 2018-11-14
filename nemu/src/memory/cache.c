@@ -5,4 +5,4 @@
 #include <memory.h>
 #include <stdio.h>
 
-CacheLine cache[];
+CacheLine cache[CACHE_SIZE_B/CACHELINE_SIZE_B];

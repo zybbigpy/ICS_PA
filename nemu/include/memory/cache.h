@@ -2,15 +2,15 @@
 #define __CACHE_H__
 
 #include "nemu.h"
-#define CACHELINE_SIZE_B 64   // 64 B cacheline
-#define CACHE_SIZE_B 1024*64  // 64 kB cache
+#define CACHELINE_SIZE_B 64   // 64 Byte cacheline
+#define CACHE_SIZE_B 1024*64  // 64 kByte cache
 
 
 typedef struct {
     struct bitAndFlag {
-        //valid bit
+        // valid bit
         uint32_t validBit:1;
-        //flag
+        // flag
         uint32_t flag:23;
         // no use
         uint32_t dummy:8;
