@@ -68,7 +68,8 @@ uint32_t cache_read(paddr_t paddr, size_t len, CacheLine* cache) {
         return ret;
     }
     else {
-
+        memcpy(&ret, hw_mem + paddr, len);
+	    return ret;
     }
 
 }
