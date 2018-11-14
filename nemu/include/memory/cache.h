@@ -19,7 +19,8 @@ typedef struct {
     uint8_t content[CACHELINE_SIZE_B];
 }CacheLine;
 
-extern CacheLine cache[];
+// L1 cache
+extern CacheLine L1_dcache[];
 
 // init cache and set all valid bits zero
 void init_cache();

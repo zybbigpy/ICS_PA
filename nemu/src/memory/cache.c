@@ -5,9 +5,9 @@
 #include <memory.h>
 #include <stdio.h>
 
-CacheLine cache[CACHE_SIZE_B/CACHELINE_SIZE_B];
+CacheLine L1_dcache[CACHE_SIZE_B/CACHELINE_SIZE_B];
 
 void init_cache() {
     // set all content especially validBit zero
-    memset(cache, 0, sizeof(CacheLine)*1024);
+    memset(L1_dcache, 0, sizeof(CacheLine)*1024);
 }
