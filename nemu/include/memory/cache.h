@@ -5,6 +5,7 @@
 
 #define CACHELINE_SIZE_B 64   // 64 byte cacheline
 #define CACHE_SIZE_B 1024*64  // 64 kbyte cache
+#define BLOCK_SIZE 64 // mem_block(cache_line) size is 64 byte
 
 typedef struct {
     struct {
