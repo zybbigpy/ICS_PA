@@ -91,6 +91,8 @@ uint32_t cache_read(paddr_t paddr, size_t len, CacheLine* cache) {
         lineNoChosen = chooseLine(lineNoBgn, cache);
         memcpy(&ret, hw_mem + paddr, len);
         memcpy(cache[lineNoChosen].content, hw_mem + ((paddr>>6)<<6), BLOCK_SIZE);
+        cache[lineNoChosen].bitAndFlag.validBit = 1;
+        cache[lineNoChosen].bitAndFlag.flag = flag;
 	    return ret;
     }
 
