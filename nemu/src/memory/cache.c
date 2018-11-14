@@ -25,23 +25,25 @@ uint32_t get_paddr_flag(paddr_t paddr) {
 
 // get the set nuber of paddr
 uint32_t get_paddr_setNo(paddr_t paddr) {
+    // 3 bits in the middle of paddr
     uint32_t setNo = (paddr >> 6) & (0x7);
-
+    return setNo;
 }
 
-//get the block address of the paddr
+// get the block address of the paddr
 uint32_t get_paddr_blockAddr(paddr_t paddr) {
-
-}
-
-uint32_t cache_read(paddr_t paddr, size_t len, CacheLine* cache) {
-
+    // last 6 bits of paddr
+    uint32_t blockAddr = paddr & 0x3f;
+    return blockAddr;
 }
 
 /*
 ** Above are some help funcs.
 */
 
+uint32_t cache_read(paddr_t paddr, size_t len, CacheLine* cache) {
+
+}
 
 // write cache
 void cache_write(paddr_t paddr, size_t len, uint32_t data, CacheLine* cache) {
