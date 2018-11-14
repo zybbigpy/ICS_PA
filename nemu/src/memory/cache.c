@@ -97,9 +97,6 @@ void cache_write(paddr_t paddr, size_t len, uint32_t data, CacheLine* cache) {
     uint32_t setNo = 0;
     uint32_t blockAddr = 0;
     uint32_t lineNoBgn = 0;
-    uint32_t ret = 0;
-    uint32_t lineNoHit = 0;
-    uint32_t lineNoChosen = 0;
     bool hitStatus = false;
  
     flag = get_paddr_flag(paddr);
