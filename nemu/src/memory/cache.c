@@ -47,6 +47,7 @@ uint32_t cache_read(paddr_t paddr, size_t len, CacheLine* cache) {
     uint32_t blockAddr = 0;
     uint32_t lineNoBgn = 0;
     uint32_t ret = 0;
+    uint32_t lineNoHit = 0;
     bool hitStatus = false;
  
     flag = get_paddr_flag(paddr);
@@ -57,11 +58,13 @@ uint32_t cache_read(paddr_t paddr, size_t len, CacheLine* cache) {
         if(cache[lineNoBgn + i].bitAndFlag.flag == flag) {
             if(cache[lineNoBgn + i].bitAndFlag.validBit == 1) {
                 hitStatus = true;
+                lineNoHit = lineNoBgn + i;
             }
         }
     }
-    if(hitStatus) {
 
+    if(hitStatus) {
+        memcpy(&ret, cache[lineNoHit].content, len);
     }
     else {
 
