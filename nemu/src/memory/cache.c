@@ -104,4 +104,13 @@ void cache_write(paddr_t paddr, size_t len, uint32_t data, CacheLine* cache) {
     blockAddr = get_paddr_blockAddr(paddr);
     lineNoBgn = setNo * 8;
 
+    for(size_t i = 0; i < 8; ++i) {
+        if(cache[lineNoBgn + i].bitAndFlag.flag == flag) {
+            if(cache[lineNoBgn + i].bitAndFlag.validBit == 1) {
+                hitStatus = true;
+                cache[lineNoBgn + i].bitAndFlag.validBit = 0;
+            }
+        }
+    }
+
 }
