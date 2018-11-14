@@ -16,7 +16,7 @@ typedef struct {
         uint32_t dummy:8;
     };
     // 64 bytes for content
-    uint32_t content[CACHELINE_SIZE_B/4];
+    uint8_t content[CACHELINE_SIZE_B];
 }CacheLine;
 
 extern CacheLine cache[];
