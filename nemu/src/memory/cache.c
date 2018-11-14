@@ -25,6 +25,7 @@ uint32_t get_paddr_flag(paddr_t paddr) {
 
 // get the set nuber of paddr
 uint32_t get_paddr_setNo(paddr_t paddr) {
+    uint32_t setNo = (paddr >> 6) & (0x7);
 
 }
 
