@@ -4,7 +4,9 @@ struct CacheLine {
         //valid bit
         uint32_t validBit:1;
         //flag
-        uint32_t flag:19;
+        uint32_t flag:23;
+        // no use
+        uint32_t dummy:8;
     };
     // 64 bytes for content
     uint32_t content[16];
