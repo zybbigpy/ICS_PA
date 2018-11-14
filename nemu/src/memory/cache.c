@@ -112,5 +112,11 @@ void cache_write(paddr_t paddr, size_t len, uint32_t data, CacheLine* cache) {
             }
         }
     }
+    if(hitStatus) {
+        memcpy(hw_mem + paddr, &data, len);
+    }
+    else {
+        memcpy(hw_mem + paddr, &data, len);
+    }
 
 }
