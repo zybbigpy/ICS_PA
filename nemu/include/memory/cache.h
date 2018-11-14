@@ -2,6 +2,10 @@
 #define __CACHE_H__
 
 #include "nemu.h"
+#define CACHELINE_SIZE_B
+#define CACHE_SIZE_B
+
+
 struct CacheLine {
     struct bitAndFlag {
         //valid bit
@@ -15,8 +19,15 @@ struct CacheLine {
     uint32_t content[16];
 };
 
+extern CacheLine cache[];
+
+// init cache and set all valid bits zero
 void init_cache();
+
+// read cache
 uint32_t cache_read(paddr_t paddr, size_t len, CacheLine* cache);
+
+// write cache
 void cache_write(paddr_t paddr, size_t len, uint32_t data, CacheLine* cache);
 
 #endif
