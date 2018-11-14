@@ -38,6 +38,17 @@ uint32_t get_paddr_blockAddr(paddr_t paddr) {
     return blockAddr;
 }
 
+uint32_t chooseLine(uint32_t lineNoBgn, ChacheLine* cache) {
+    bool find = false; 
+    for(size_t i = 0; i < 8; ++i) {
+        if(cache[lineNoBgn+i].bitAndFlag.validBit == 0) {
+            find = true;
+            return lineNoBgn + i;
+        }
+    }
+    if(find == false)
+}
+
 /*
 ** Above are some help funcs.
 */
@@ -49,6 +60,7 @@ uint32_t cache_read(paddr_t paddr, size_t len, CacheLine* cache) {
     uint32_t lineNoBgn = 0;
     uint32_t ret = 0;
     uint32_t lineNoHit = 0;
+    uint32_t lineNoChosen = 0;
     bool hitStatus = false;
  
     flag = get_paddr_flag(paddr);
