@@ -6,7 +6,7 @@
 #define CACHE_SIZE_B
 
 
-struct CacheLine {
+typedef struct {
     struct bitAndFlag {
         //valid bit
         uint32_t validBit:1;
@@ -17,7 +17,7 @@ struct CacheLine {
     };
     // 64 bytes for content
     uint32_t content[16];
-};
+}CacheLine;
 
 extern CacheLine cache[];
 
