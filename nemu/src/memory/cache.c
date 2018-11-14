@@ -18,7 +18,9 @@ void init_cache() {
 
 // get the flag of paddr
 uint32_t get_paddr_flag(paddr_t paddr) {
-
+    // first 23 bits of paddr
+    uint32_t flag = paddr >> 9;
+    return flag;
 }
 
 // get the set nuber of paddr
