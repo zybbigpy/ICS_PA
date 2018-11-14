@@ -12,10 +12,10 @@ typedef struct {
         // valid bit
         uint32_t validBit:1;
         // flag
-        uint32_t flag:23;
+        uint32_t flag:19;
         // no use
-        uint32_t dummy:8;
-    } bitAndFlag;
+        uint32_t dummy:12;
+    }bitAndFlag;
     // 64 bytes for content
     uint8_t content[CACHELINE_SIZE_B];
 }CacheLine;
