@@ -46,7 +46,9 @@ uint32_t chooseLine(uint32_t lineNoBgn, ChacheLine* cache) {
             return lineNoBgn + i;
         }
     }
-    if(find == false)
+    if(find == false) {
+        return lineNoBgn;
+    }
 }
 
 /*
