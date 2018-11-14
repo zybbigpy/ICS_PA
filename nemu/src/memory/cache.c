@@ -65,11 +65,12 @@ uint32_t cache_read(paddr_t paddr, size_t len, CacheLine* cache) {
     }
 
     if(hitStatus) {
-        memcpy(&ret, cache[lineNoHit].content, len);
+        memcpy(&ret, &cache[lineNoHit].content[blockAddr], len);
         return ret;
     }
     else {
         memcpy(&ret, hw_mem + paddr, len);
+        memcpy(cache[lineNoHit].content, hw_mem + paddr, len);
 	    return ret;
     }
 
