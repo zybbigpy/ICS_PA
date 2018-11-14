@@ -40,15 +40,17 @@ uint32_t get_paddr_blockAddr(paddr_t paddr) {
 
 uint32_t chooseLine(uint32_t lineNoBgn, CacheLine* cache) {
     bool find = false; 
+    uint32_t linechosen = 0;
     for(size_t i = 0; i < 8; ++i) {
         if(cache[lineNoBgn+i].bitAndFlag.validBit == 0) {
             find = true;
-            return lineNoBgn + i;
+            linechosen = lineNoBgn + i;
         }
     }
     if(find == false) {
-        return lineNoBgn;
+        linechosen = lineNoBgn;
     }
+    return linechosen;
 }
 
 /*
