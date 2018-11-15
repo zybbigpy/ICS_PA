@@ -97,7 +97,6 @@ uint32_t cache_read(paddr_t paddr, size_t len, CacheLine* cache) {
         cache[lineNoChosen].bitAndFlag.flag = flag;
 	    return ret;
     }
-
 }
 
 // write cache
