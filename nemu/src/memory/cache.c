@@ -106,7 +106,7 @@ void cache_write(paddr_t paddr, size_t len, uint32_t data, CacheLine* cache) {
     uint32_t setNo = 0;
     //uint32_t blockAddr = 0;
     uint32_t lineNoBgn = 0;
-    bool hitStatus = false;
+    //bool hitStatus = false;
  
     flag = get_paddr_flag(paddr);
     setNo = get_paddr_setNo(paddr);
@@ -116,20 +116,17 @@ void cache_write(paddr_t paddr, size_t len, uint32_t data, CacheLine* cache) {
     // if(blockAddr + len >= 64) {
     //     hitStatus = true;
     // }
-
+    // two blocks
     for(size_t i = 0; i < 16; ++i) {
         if(cache[lineNoBgn + i].bitAndFlag.flag == flag) {
             if(cache[lineNoBgn + i].bitAndFlag.validBit == 1) {
-                hitStatus = true;
+                //hitStatus = true;
                 cache[lineNoBgn + i].bitAndFlag.validBit = 0;
             }
         }
     }
-    if(hitStatus) {
+    
         //init_cache();
-        memcpy(hw_mem + paddr, &data, len);
-    }
-    else {
-        memcpy(hw_mem + paddr, &data, len);
-    }
+    memcpy(hw_mem + paddr, &data, len);
+   
 }
