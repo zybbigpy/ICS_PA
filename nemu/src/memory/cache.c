@@ -41,7 +41,7 @@ uint32_t get_paddr_blockAddr(paddr_t paddr) {
 uint32_t chooseLine(uint32_t lineNoBgn, CacheLine* cache) {
     bool find = false; 
     uint32_t linechosen = 0;
-    for(size_t i = 0; i < 8; ++i) {
+    for(size_t i = 0; i < SET_SIZE; ++i) {
         if(cache[lineNoBgn+i].bitAndFlag.validBit == 0) {
             find = true;
             linechosen = lineNoBgn + i;
@@ -70,9 +70,9 @@ uint32_t cache_read(paddr_t paddr, size_t len, CacheLine* cache) {
     flag = get_paddr_flag(paddr);
     setNo = get_paddr_setNo(paddr);
     blockAddr = get_paddr_blockAddr(paddr);
-    lineNoBgn = setNo * 8;
+    lineNoBgn = setNo * SET_SIZE;
 
-    for(size_t i = 0; i < 8; ++i) {
+    for(size_t i = 0; i < SET_SIZE; ++i) {
         if(cache[lineNoBgn + i].bitAndFlag.flag == flag) {
             if(cache[lineNoBgn + i].bitAndFlag.validBit == 1) {
                 hitStatus = true;
@@ -110,13 +110,13 @@ void cache_write(paddr_t paddr, size_t len, uint32_t data, CacheLine* cache) {
     flag = get_paddr_flag(paddr);
     setNo = get_paddr_setNo(paddr);
     //blockAddr = get_paddr_blockAddr(paddr);
-    lineNoBgn = setNo * 8;
+    lineNoBgn = setNo * SET_SIZE;
 
     // if(blockAddr + len >= 64) {
     //     hitStatus = true;
     // }
     // two blocks
-    for(size_t i = 0; i < 16; ++i) {
+    for(size_t i = 0; i < 2*SET_SIZE; ++i) {
         if(cache[lineNoBgn + i].bitAndFlag.flag == flag) {
             if(cache[lineNoBgn + i].bitAndFlag.validBit == 1) {
                 //hitStatus = true;
