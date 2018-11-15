@@ -49,6 +49,9 @@ void vaddr_write(vaddr_t vaddr, uint8_t sreg, size_t len, uint32_t data) {
 }
 
 void init_mem() {
+#ifdef CACHE_ENABLED
+	init_cache();
+#endif
 	// clear the memory on initiation
 	memset(hw_mem, 0, MEM_SIZE_B);
 
