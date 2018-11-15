@@ -50,7 +50,8 @@ uint32_t chooseLine(uint32_t lineNoBgn, CacheLine* cache) {
         }
     }
     if(find == false) {
-        linechosen = lineNoBgn;
+        srand(time(NULL));
+        linechosen = rand()%(SET_SIZE+1);
     }
     return linechosen;
 }
