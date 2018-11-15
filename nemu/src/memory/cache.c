@@ -5,6 +5,8 @@
 //#include "device/mm_io.h"
 #include <memory.h>
 #include <stdio.h>
+#include <stdlib.h>
+#include <time.h>
 
 CacheLine L1_dcache[CACHE_SIZE_B / CACHELINE_SIZE_B];
 
