@@ -49,6 +49,7 @@ uint32_t chooseLine(uint32_t lineNoBgn, CacheLine* cache) {
             linechosen = lineNoBgn + i;
         }
     }
+    // random selection algorithm
     if(find == false) {
         srand(time(NULL));
         linechosen = lineNoBgn+rand()%SET_SIZE;
