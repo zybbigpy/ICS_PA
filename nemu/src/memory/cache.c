@@ -104,13 +104,13 @@ uint32_t cache_read(paddr_t paddr, size_t len, CacheLine* cache) {
 void cache_write(paddr_t paddr, size_t len, uint32_t data, CacheLine* cache) {
     uint32_t flag = 0;
     uint32_t setNo = 0;
-    uint32_t blockAddr = 0;
+    //uint32_t blockAddr = 0;
     uint32_t lineNoBgn = 0;
     bool hitStatus = false;
  
     flag = get_paddr_flag(paddr);
     setNo = get_paddr_setNo(paddr);
-    blockAddr = get_paddr_blockAddr(paddr);
+    //blockAddr = get_paddr_blockAddr(paddr);
     lineNoBgn = setNo * 8;
 
     // if(blockAddr + len >= 64) {
