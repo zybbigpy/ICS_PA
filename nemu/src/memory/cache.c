@@ -51,7 +51,7 @@ uint32_t chooseLine(uint32_t lineNoBgn, CacheLine* cache) {
     }
     if(find == false) {
         srand(time(NULL));
-        linechosen = lineNoBgn+rand()%9;
+        linechosen = lineNoBgn+rand()%9-1;
     }
     return linechosen;
 }
