@@ -1,7 +1,6 @@
 #include "cpu/instr.h"
 
-static void instr_execute_1op()
-{
+static void instr_execute_1op() {
     OPERAND help;
     help.addr = cpu.esp;
     help.data_size = data_size;
