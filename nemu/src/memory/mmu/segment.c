@@ -21,6 +21,7 @@ void load_sreg(uint8_t sreg) {
 	// find the addr of the segtable
 	uint32_t laddr_segtable_bgn = cpu.gdtr.base;
 	// the size of segdesc is 8 bytes 
+	uint32_t laddr_segtable_offset = cpu.segReg[sreg].index * sizeof(SegDesc);
 	uint32_t laddr_segtable_fnd = laddr_segtable_bgn + cpu.segReg[sreg].index * sizeof(SegDesc);
 	
 	// load the segdesc
