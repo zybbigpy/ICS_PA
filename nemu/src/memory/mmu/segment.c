@@ -27,8 +27,8 @@ void load_sreg(uint8_t sreg) {
 	
 	// load the segdesc
 	SegDesc sd;
-	memcpy(sd.val[0], laddr_segtable_fnd, 4);
-	memcpy(sd.val[1], laddr_segtable_fnd + 4, 4);
+	memcpy(&sd.val[0], laddr_segtable_fnd, 4);
+	memcpy(&sd.val[1], laddr_segtable_fnd + 4, 4);
 
 	// load cache part of segreg according to the segdesc
 	cpu.segReg[sreg].soft_use = sd.soft_use;
