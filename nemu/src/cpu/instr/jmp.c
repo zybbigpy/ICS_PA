@@ -19,8 +19,7 @@ make_instr_func(jmp_near) {
         return 1 + data_size / 8;
 }
 
-make_instr_func(jmp_short)
-{
+make_instr_func(jmp_short) {
         //rel8
         OPERAND rel;
         rel.type = OPR_IMM;
@@ -39,8 +38,7 @@ make_instr_func(jmp_short)
         return 1 + 8 / 8;
 }
 
-make_instr_func(jmp_near_indirect)
-{
+make_instr_func(jmp_near_indirect) {
         OPERAND rm;
         rm.data_size = data_size;
         int len = 1;
