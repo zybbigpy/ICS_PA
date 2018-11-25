@@ -18,5 +18,6 @@ void load_sreg(uint8_t sreg) {
 	 * The visible part of 'sreg' should be assigned by mov or ljmp already.
 	 */
 	uint32_t laddr_segtable = 0;
-	laddr_segtable = cpu.gdtr.base + cpu.segReg[sreg].index << 3;
+	// the size of segdesc is 8 bytes 
+	laddr_segtable = cpu.gdtr.base + (cpu.segReg[sreg].index << 3);
 }
