@@ -28,7 +28,7 @@ typedef union {
 // define the structure of SegReg
 
 typedef struct{
-	// the selector
+	// selector part
 	union {
 		struct {
 			uint32_t rpl :2;
@@ -36,7 +36,8 @@ typedef struct{
 			uint32_t index: 13;
 		};
 		uint16_t val;;
-	}
+	};
+	// cache part
 
 }SegReg;
 
