@@ -25,6 +25,8 @@ typedef union {
 	uint32_t val;
 }CR0;
 
+// define the structure of 
+
 // define the structure of registers
 typedef struct {
 
