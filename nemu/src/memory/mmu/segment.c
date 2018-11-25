@@ -35,4 +35,7 @@ void load_sreg(uint8_t sreg) {
 	cpu.segReg[sreg].base = (sd.base_31_24 << 24) + (sd.base_23_16 << 16) 
 							+ sd.base_15_0;
 	cpu.segReg[sreg].limit = (sd.limit_19_16 << 16) + sd.limit_15_0;
+	assert(sd.granularity ==1);
+	assert(cpu.segReg[sreg].base=0x0);
+	assert(cpu.segReg[sreg].limit =0xffff);
 }
