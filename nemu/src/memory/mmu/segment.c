@@ -21,6 +21,6 @@ void load_sreg(uint8_t sreg) {
 	// the size of segdesc is 8 bytes 
 	uint32_t laddr_segtable_fnd = laddr_segtable_bgn + (cpu.segReg[sreg].index << 3);
 	SegDesc sd;
-	memcpy(sd.val[0],laddr_segtable_fnd,4);
-	memcpy();
+	memcpy(sd.val[0], laddr_segtable_fnd, 4);
+	memcpy(sd.val[1], laddr_segtable_fnd + 4, 4);
 }
