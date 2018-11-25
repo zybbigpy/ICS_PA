@@ -29,9 +29,10 @@ void load_sreg(uint8_t sreg) {
 	memcpy(sd.val[1], laddr_segtable_fnd + 4, 4);
 
 	// load cache part of segreg according to the segdesc
-	cpu.segReg[sreg].soft_use = 0;
-	cpu.segReg[sreg].privilege_level =0;
-	cpu.segReg[sreg].type =0;
-	cpu.segReg[sreg].base =0;
-	cpu.segReg[sreg].limit=0;
+	cpu.segReg[sreg].soft_use = sd.soft_use;
+	cpu.segReg[sreg].privilege_level = sd.soft_use;
+	cpu.segReg[sreg].type = sd.type;
+	cpu.segReg[sreg].base = (sd.base_31_24 << 24) + (sd.base_23_16 << 16) 
+							+ sd.base_15_0;
+	cpu.segReg[sreg].limit = (sd.limit_19_16 << 16) + sd.limit_15_0;
 }
