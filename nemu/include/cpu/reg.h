@@ -14,13 +14,13 @@ typedef struct {
 
 typedef union {
 	struct {
-		uint32_t pe :1;
-		uint32_t mp :1;
-		uint32_t em :1;
-		uint32_t ts :1;
-		uint32_t et :1;
+		uint32_t pe 	 :1;
+		uint32_t mp      :1;
+		uint32_t em      :1;
+		uint32_t ts      :1;
+		uint32_t et      :1;
 		uint32_t reserve :26;
-		uint32_t pg :1;
+		uint32_t pg      :1;
 	};
 	uint32_t val;
 }CR0;
@@ -31,9 +31,9 @@ typedef struct{
 	// selector part
 	union {
 		struct {
-			uint32_t rpl :2;
-			uint32_t ti  :1;
-			uint32_t index: 13;
+			uint32_t rpl   :2;
+			uint32_t ti    :1;
+			uint32_t index :13;
 		};
 		uint16_t val;;
 	};
@@ -41,9 +41,9 @@ typedef struct{
 	struct {
 		uint32_t base;
 		uint32_t limit;
-		uint32_t type: 5;
-		uint32_t privilege_level:2;
-		uint32_t soft_use :1;
+		uint32_t type            :5;
+		uint32_t privilege_level :2;
+		uint32_t soft_use        :1;
 	};
 }SegReg;
 
