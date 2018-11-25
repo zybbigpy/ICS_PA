@@ -8,7 +8,7 @@
 typedef struct {
 	uint32_t limit :16;
 	uint32_t base  :32;	
-}GDTR;
+} GDTR;
 
 // define the structure of CR0
 
@@ -23,7 +23,7 @@ typedef union {
 		uint32_t pg      :1;
 	};
 	uint32_t val;
-}CR0;
+} CR0;
 
 // define the structure of SegReg
 
@@ -45,7 +45,7 @@ typedef struct{
 		uint32_t privilege_level :2;
 		uint32_t soft_use        :1;
 	};
-}SegReg;
+} SegReg;
 
 // define the structure of registers
 typedef struct {
