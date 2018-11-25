@@ -80,7 +80,7 @@ uint32_t cache_read(paddr_t paddr, size_t len, CacheLine* cache) {
         if(cache[lineNoBgn + i].bitAndFlag.flag == flag) {
             if(cache[lineNoBgn + i].bitAndFlag.validBit == 1) {
                 hitStatus = true;
-                printf("Hit Cache!\n");
+                //printf("Hit Cache!\n");
                 lineNoHit = lineNoBgn + i;
             }
         }
