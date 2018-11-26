@@ -294,6 +294,9 @@ make_instr_func(mov_srm162r_l) {
 make_instr_func(mov_r2c_l) {
 	uint8_t creg_index = 0;
 	uint8_t gpr_index = 0;
+	uint8_t modrm_byte = instr_fetch(eip + 1, 1);
+	creg_index = (modrm_byte >> 3) & 0x7;
+	gpr_index = modrm_byte & 0x7;
 	switch(creg_index){
 		case 0:	cpu.cr0.val=cpu.gpr[gpr_index].val;
 		//case 3:cpu.cr3.val=cpu.gpr[gpr_index].val;
@@ -304,7 +307,7 @@ make_instr_func(mov_r2c_l) {
 make_instr_func(mov_c2r_l) {
 	uint8_t creg_index = 0;
 	uint8_t gpr_index = 0;
-	uint8_t modrm_byte = instr_fetch(eip+1, 1);
+	uint8_t modrm_byte = instr_fetch(eip + 1, 1);
 	creg_index = (modrm_byte >> 3) & 0x7;
 	gpr_index = modrm_byte & 0x7;
 	switch(creg_index){
