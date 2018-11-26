@@ -294,7 +294,7 @@ make_instr_func(mov_srm162r_l) {
 make_instr_func(mov_r2c_l) {
 	uint8_t creg_index = 0;
 	uint8_t gpr_index = 0;
-	cpu.cr0
+	cpu.cr0.val=cpu.gpr[gpr_index].val;
 
 }
 
