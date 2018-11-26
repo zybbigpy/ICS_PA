@@ -317,6 +317,6 @@ make_instr_func(mov_c2r_l) {
 	return 2;
 }
 
-make_instr_func(mov_rm2s_w){
+make_instr_func(mov_rm2s_w) {
 	
 }
