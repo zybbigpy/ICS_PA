@@ -327,5 +327,9 @@ make_instr_func(mov_rm2s_w) {
 	uint8_t sreg_index = 0;
 	uint8_t modrm_byte = instr_fetch(eip + 1, 1);
 	sreg_index = (modrm_byte >> 3) & 0x7;
+	cpu.segReg[sreg_index].val = rm.val;
+
+
+	return len;
 	
 }
