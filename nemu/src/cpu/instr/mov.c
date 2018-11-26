@@ -298,8 +298,8 @@ make_instr_func(mov_r2c_l) {
 	creg_index = (modrm_byte >> 3) & 0x7;
 	gpr_index = modrm_byte & 0x7;
 	switch(creg_index) {
-		case 0:	cpu.cr0.val=cpu.gpr[gpr_index].val;
-		//case 3:cpu.cr3.val=cpu.gpr[gpr_index].val;
+		case 0x0:	cpu.cr0.val=cpu.gpr[gpr_index].val;
+		//case 0x3:cpu.cr3.val=cpu.gpr[gpr_index].val;
 	}
 	return 2;
 }
@@ -311,8 +311,8 @@ make_instr_func(mov_c2r_l) {
 	creg_index = (modrm_byte >> 3) & 0x7;
 	gpr_index = modrm_byte & 0x7;
 	switch(creg_index) {
-		case 0:	cpu.gpr[gpr_index].val = cpu.cr0.val;
-		//case 3:cpu.gpr[gpr_index].val = cpu.cr3.val;
+		case 0x0:	cpu.gpr[gpr_index].val = cpu.cr0.val;
+		//case 0x3:cpu.gpr[gpr_index].val = cpu.cr3.val;
 	}
 	return 2;
 }
