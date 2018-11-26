@@ -27,9 +27,9 @@ void load_sreg(uint8_t sreg) {
 	
 	// load the segdesc
 	SegDesc sd;
-	//memcpy(&sd, (void *)laddr_segtable_fnd, sizeof(SegDesc));
-	memcpy(&sd.val[0], (void *)laddr_segtable_fnd, 4);
-	memcpy(&sd.val[1], (void *)laddr_segtable_fnd + 4, 4);
+	memcpy(&sd, hw_mem+laddr_segtable_fnd, sizeof(SegDesc));
+	//memcpy(&sd.val[0], (void *)laddr_segtable_fnd, 4);
+	//memcpy(&sd.val[1], (void *)laddr_segtable_fnd + 4, 4);
 
 	// load cache part of segreg according to the segdesc
 	cpu.segReg[sreg].soft_use = sd.soft_use;
@@ -40,7 +40,9 @@ void load_sreg(uint8_t sreg) {
 	cpu.segReg[sreg].limit = (sd.limit_19_16 << 16) + sd.limit_15_0;
 
 	// for debug use
-	assert(sd.granularity == 1);
-	assert(cpu.segReg[sreg].base == 0x0);
-	assert(cpu.segReg[sreg].limit == 0xfffff);
+	if(cpu.cr0.pe == 0) {
+		assert(sd.granularity == 1);
+		assert(cpu.segReg[sreg].base == 0x0);
+		assert(cpu.segReg[sreg].limit == 0xfffff);
+	}
 }
