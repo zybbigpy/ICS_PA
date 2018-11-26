@@ -290,7 +290,11 @@ make_instr_func(mov_srm162r_l) {
         return len;
 }
 
+// gpr is general purpose reg like eax
 make_instr_func(mov_r2c_l) {
+	uint8_t creg_index = 0;
+	uint8_t gpr_index = 0;
+	cpu.cr0
 
 }
 
