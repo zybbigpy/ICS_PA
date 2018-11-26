@@ -318,5 +318,12 @@ make_instr_func(mov_c2r_l) {
 }
 
 make_instr_func(mov_rm2s_w) {
+	int len = 0;
+	OPERAND rm;
+	rm.data_size = 16;
+	len += modrm_rm(eip, &rm);
+
+	uint8_t sreg_index = 0;
+	uint8_t modrm_byte = instr_fetch(eip + 1, 1);
 	
 }
