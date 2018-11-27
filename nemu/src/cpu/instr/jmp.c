@@ -45,6 +45,7 @@ make_instr_func(jmp_near_indirect) {
         int len = 1;
         // write addr and type for opr_rm
         len += modrm_rm(eip + 1, &rm);
+        
         operand_read(&rm);
         cpu.eip = rm.val;
 
