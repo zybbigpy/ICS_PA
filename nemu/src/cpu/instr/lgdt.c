@@ -14,4 +14,5 @@ make_instr_func(lgdt) {
             cpu.gdtr.base = src_16_47;
         default: pritf("error! in lgdt\n.");
     }
+    return len;
 }
