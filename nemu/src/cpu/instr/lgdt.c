@@ -3,8 +3,8 @@
 make_instr_func(lgdt) {
     // one byte for opcode and six bytes for src
     int len  = 7;
-    uint16_t src_15 = instr_fetch(eip+1,2);
-    uint32_t src_16_47 = instr_fetch(eip+3,4);
+    uint16_t src_15 = instr_fetch(eip + 1, 2);
+    uint32_t src_16_47 = instr_fetch(eip + 3, 4);
     switch(data_size) {
         case 16:
 
