@@ -27,7 +27,7 @@ void load_sreg(uint8_t sreg) {
 	
 	// load the segdesc
 	SegDesc sd;
-	memcpy(&sd, hw_mem+laddr_segtable_fnd, sizeof(SegDesc));
+	memcpy(&sd, hw_mem + laddr_segtable_fnd, sizeof(SegDesc));
 	//memcpy(&sd.val[0], (void *)laddr_segtable_fnd, 4);
 	//memcpy(&sd.val[1], (void *)laddr_segtable_fnd + 4, 4);
 
