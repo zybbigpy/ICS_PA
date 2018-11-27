@@ -8,9 +8,10 @@ make_instr_func(lgdt) {
     switch(data_size) {
         case 16:
             cpu.gdtr.limit = src_15;
-            cpu.gdtr.base = src_16_47&0xFFFFFFH;
-
+            cpu.gdtr.base = src_16_47 & 0x00FFFFFF;
         case 32:
+            cpu.gdtr.limit = src_15;
+            cpu.gdtr.base = src_16_47 & 0x00FFFFFF;
         default: pritf("error! in lgdt\n.");
     }
 }
