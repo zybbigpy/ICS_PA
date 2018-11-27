@@ -311,6 +311,7 @@ make_instr_func(mov_c2r_l) {
 	uint8_t modrm_byte = instr_fetch(eip + 1, 1);
 	creg_index = (modrm_byte >> 3) & 0x7;
 	gpr_index = modrm_byte & 0x7;
+	assert(creg_index == 0x0 || creg_index == 0x0);
 	switch(creg_index) {
 		case 0x0:	cpu.gpr[gpr_index].val = cpu.cr0.val;
 		//case 0x3:cpu.gpr[gpr_index].val = cpu.cr3.val;
