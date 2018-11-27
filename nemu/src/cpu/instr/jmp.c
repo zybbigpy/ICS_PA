@@ -54,6 +54,9 @@ make_instr_func(jmp_near_indirect) {
 
 make_instr_func(jmp_far_imm) {
     int len = 0;
+    uint32_t ptr_15 = 0;
+    uint32_t ptr_16_32 = 0;
+    uint32_t ptr_16_47 = 0;
     if(cpu.cr0.pe == 0) {// real mode
         switch(data_size) {
             case 16:
