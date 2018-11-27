@@ -324,7 +324,7 @@ make_instr_func(mov_rm2s_w) {
 	OPERAND opr_src;
 	opr_src.data_size = 16;
 	decode_operand_rm
-	uint8_t sreg_index = instr_fetch(eip + 1, 2);
+	uint8_t sreg_index = instr_fetch(eip + 1, 1);
 	sreg_index = (sreg_index >> 3) & 0x7;
 	cpu.segReg[sreg_index].val = opr_src.val;
 	
