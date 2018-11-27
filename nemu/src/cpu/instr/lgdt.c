@@ -9,10 +9,14 @@ make_instr_func(lgdt) {
         case 16:
             cpu.gdtr.limit = src_15;
             cpu.gdtr.base = src_16_47 & 0x00FFFFFF;
+            break;
         case 32:
             cpu.gdtr.limit = src_15;
             cpu.gdtr.base = src_16_47;
-        default: printf("error! in lgdt\n.");
+            break;
+        default: 
+            printf("error! in lgdt\n.");
+            break;
     }
     return len;
 }
