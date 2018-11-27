@@ -320,17 +320,17 @@ make_instr_func(mov_c2r_l) {
 }
 
 make_instr_func(mov_rm2s_w) {
-	int len = 1;
-	OPERAND rm;
-	rm.data_size = 16;
-	len += modrm_rm(eip, &rm);
-	operand_read(&rm);
+	//int len = 1;
+	//OPERAND rm;
+	//rm.data_size = 16;
+	//len += modrm_rm(eip, &rm);
+	//operand_read(&rm);
 
-	uint8_t sreg_index = 0;
-	uint8_t modrm_byte = instr_fetch(eip + 1, 1);
-	sreg_index = (modrm_byte >> 3) & 0x7;
-	cpu.segReg[sreg_index].val = rm.val;
-	load_sreg(sreg_index);
+	//uint8_t sreg_index = 0;
+	//uint8_t modrm_byte = instr_fetch(eip + 1, 1);
+	//sreg_index = (modrm_byte >> 3) & 0x7;
+	//cpu.segReg[sreg_index].val = rm.val;
+	//load_sreg(sreg_index);
 
 	return len;	
 }
