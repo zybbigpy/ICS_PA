@@ -51,3 +51,7 @@ make_instr_func(jmp_near_indirect) {
 
         return 0;
 }
+
+make_instr_func(jmp_far_imm) {
+        
+}
