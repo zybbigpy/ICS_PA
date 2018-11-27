@@ -57,7 +57,7 @@ void operand_write(OPERAND * opr) {
 	switch(opr->type) {
 	case OPR_MEM:
 		// data size here
-		assert(opr->sreg == SREG_DS || opr->sreg == SREG_SS|| opr->sreg == SREG_ES);
+		//assert(opr->sreg == SREG_DS || opr->sreg == SREG_SS|| opr->sreg == SREG_ES);
 		vaddr_write(opr->addr, opr->sreg, opr->data_size / 8, opr->val);
 		break;
 	case OPR_REG:
