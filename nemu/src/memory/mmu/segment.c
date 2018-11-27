@@ -17,7 +17,9 @@ void load_sreg(uint8_t sreg) {
 	/* TODO: load the invisibile part of the segment register 'sreg' by reading the GDT.
 	 * The visible part of 'sreg' should be assigned by mov or ljmp already.
 	 */
-	printf("used load_sreg\n");
+	if(cpu.cr0.pe == 1) {
+		printf("protected mode: used load_sreg\n");
+	}
 	// find the addr of the segtable
 	uint32_t laddr_segtable_bgn = cpu.gdtr.base;
 	// the size of segdesc is 8 bytes 
