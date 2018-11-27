@@ -42,6 +42,7 @@ make_instr_func(call_near_indirect) {
     //realize like jmp_near_indirect
     OPERAND rm;
     rm.data_size = data_size;
+    rm.sreg = SREG_CS;
     int len = 1;
     len += modrm_rm(eip + 1, &rm);          // write addr and type for opr_rm
     operand_read(&rm);
