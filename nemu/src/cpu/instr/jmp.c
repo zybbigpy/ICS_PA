@@ -53,26 +53,7 @@ make_instr_func(jmp_near_indirect) {
 }
 
 make_instr_func(jmp_far_imm) {
-        // int len = 1 + 2 + data_size/8;
-        // switch(cpu.cr0.pe){
-        //         case 0:
-        //                 cpu.segReg[SREG_CS].val = instr_fetch(eip + 1, 2);
-        //                 load_sreg(SREG_CS);
-        //                 cpu.eip = instr_fetch(eip + 3, 4);
-        //                 break;
-        //         case 1:
-        //         //protect mode: 
-        //         //opcode m16:16/opcode m16:32
-        //                 break;
-        //         default:
-        //                 break;
-        // }
-        // if(data_size == 16){
-        //         cpu.eip = cpu.eip & 0x0000FFFF;
-        // }
-        // return len;
-
-    int len = 3 + data_size/8;
+    int len = 3 + data_size / 8;
     uint32_t ptr_15 = 0;
     uint32_t ptr_16_32 = 0;
     uint32_t ptr_16_47 = 0;
