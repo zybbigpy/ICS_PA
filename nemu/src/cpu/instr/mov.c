@@ -320,6 +320,15 @@ make_instr_func(mov_c2r_l) {
 }
 
 make_instr_func(mov_rm2s_w) {
+	int len = 1;
+	OPERAND opr_src;
+	opr_src.data_size = 16;
+	decode_operand_rm
+	uint8_t sreg_index = instr_fetch(eip + 1, 2);
+	sreg_index = (sreg_index >> 3) & 0x7;
+	cpu.segReg[sreg_index].val = opr_src.val;
+	
+	load_sreg(sreg_index);
 	//int len = 1;
 	//OPERAND rm;
 	//rm.data_size = 16;
