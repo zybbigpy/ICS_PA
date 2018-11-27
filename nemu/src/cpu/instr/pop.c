@@ -5,7 +5,7 @@ static void instr_execute_1op() {
     help.addr = cpu.esp;
     help.data_size = data_size;
     help.type = OPR_MEM;
-    help.sreg = SREG_DS;
+    help.sreg = SREG_SS;
     operand_read(&help);
     opr_src.val = help.val;
     opr_src.sreg = SREG_DS;
