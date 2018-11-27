@@ -292,7 +292,7 @@ make_instr_func(mov_srm162r_l) {
 
 // gpr is general purpose reg like eax
 make_instr_func(mov_r2c_l) {
-	printf("mov_c_r used\n ");
+	printf("mov_r_c used\n ");
 	uint8_t creg_index = 0;
 	uint8_t gpr_index = 0;
 	uint8_t modrm_byte = instr_fetch(eip + 1, 1);
