@@ -57,14 +57,14 @@ make_instr_func(jmp_far_imm) {
     if(cpu.cr0.pe == 0) {// real mode
         switch(data_size) {
             case 16:
-                uint16_t ptr_15 = instr_fetch(eip + 3, 2);
-                uint16_t ptr_16_32 = instr_fetch(eip + 1, 2);
+                uint16_t ptr_15 = instr_fetch(eip + 1, 2);
+                uint16_t ptr_16_32 = instr_fetch(eip + 3, 2);
                 cpu.eip = ptr_16_32;
                 len = 5;
                 break;
             case 32:
-                uint16_t ptr_15 = instr_fetch(eip + 3, 2);
-                uint32_t ptr_16_47 = instr_fetch(eip + 1, 2);
+                uint16_t ptr_15 = instr_fetch(eip + 1, 2);
+                uint32_t ptr_16_47 = instr_fetch(eip + 3, 2);
                 cpu.eip = ptr_16_47;
                 len = 7;
                 break;
