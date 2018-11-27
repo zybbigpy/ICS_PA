@@ -6,20 +6,20 @@ make_instr_func(ret_near) {
     help.type = OPR_MEM;
     help.data_size = data_size; //??s
     help.addr = cpu.esp;
-    help.sreg = SREG_CS;
+    help.sreg = SREG_DS;
     operand_read(&help);
     cpu.eip = help.val;
     cpu.esp += data_size / 8;
     return 0; //len?=0s
 }
 
-make_instr_func(ret_near_imm16)
-{
+make_instr_func(ret_near_imm16) {
     //pop eip
     OPERAND help;
     help.type = OPR_MEM;
     help.data_size = data_size; //??s
     help.addr = cpu.esp;
+    help.sreg = SREG_DS;
     operand_read(&help);
     cpu.eip = help.val;
     cpu.esp += data_size / 8;
