@@ -8,7 +8,7 @@ make_instr_func(leave) {
     help.addr = cpu.esp;
     help.data_size = data_size;
     help.type = OPR_MEM;
-    //help.sreg = SREG_CS;
+    help.sreg = SREG_SS;
     operand_read(&help);
     cpu.ebp = help.val;
     cpu.esp += data_size / 8;
