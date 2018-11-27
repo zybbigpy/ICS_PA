@@ -17,6 +17,7 @@ make_instr_func(call_near) {
     //printf("datasize is %d\n",data_size);
     rel.data_size = data_size;
     rel.addr = eip + 1;
+    rel.sreg = SREG_CS;
 
     operand_read(&rel);
     //printf("call_near val is 0x%x\n", rel.val);
@@ -28,8 +29,7 @@ make_instr_func(call_near) {
     return 1 + data_size / 8;
 }
 
-make_instr_func(call_near_indirect)
-{
+make_instr_func(call_near_indirect) {
     //push eip
     OPERAND help;
     cpu.esp -= data_size / 8;               //maybe 2
