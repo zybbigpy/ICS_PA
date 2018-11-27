@@ -292,7 +292,7 @@ make_instr_func(mov_srm162r_l) {
 
 // gpr is general purpose reg like eax
 make_instr_func(mov_r2c_l) {
-	printf("mov_r_c used\n ");
+	//printf("mov_r_c used\n ");
 	uint8_t creg_index = 0;
 	uint8_t gpr_index = 0;
 	uint8_t modrm_byte = instr_fetch(eip + 1, 1);
@@ -307,7 +307,7 @@ make_instr_func(mov_r2c_l) {
 }
 
 make_instr_func(mov_c2r_l) {
-	printf("mov_c_r used\n ");
+	//printf("mov_c_r used\n ");
 	uint8_t creg_index = 0;
 	uint8_t gpr_index = 0;
 	uint8_t modrm_byte = instr_fetch(eip + 1, 1);
@@ -329,7 +329,7 @@ make_instr_func(mov_rm2s_w) {
 	decode_operand_rm
 	uint8_t sreg_index = instr_fetch(eip + 1, 1);
 	sreg_index = (sreg_index >> 3) & 0x7;
-	printf("sreg index == %d\n",sreg_index);
+	//printf("sreg index == %d\n",sreg_index);
 	cpu.segReg[sreg_index].val = opr_src.val;
 	
 	load_sreg(sreg_index);
