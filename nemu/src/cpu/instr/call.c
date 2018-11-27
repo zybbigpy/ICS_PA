@@ -1,10 +1,10 @@
 #include "cpu/instr.h"
-make_instr_func(call_near)
-{
+make_instr_func(call_near) {
     //push eip
     OPERAND help;
     cpu.esp -= data_size / 8;                   //maybe datasize=16
     help.type = OPR_MEM;
+    help.sreg = SREG_DS;
     help.data_size = data_size;
     help.val = cpu.eip + 1 + data_size / 8;     // eip + len(opcode) + len(data)
     help.addr = cpu.esp;
