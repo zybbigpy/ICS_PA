@@ -326,6 +326,7 @@ make_instr_func(mov_rm2s_w) {
 	decode_operand_rm
 	uint8_t sreg_index = instr_fetch(eip + 1, 1);
 	sreg_index = (sreg_index >> 3) & 0x7;
+	printf("sreg index == %d\n",sreg_index);
 	cpu.segReg[sreg_index].val = opr_src.val;
 	
 	load_sreg(sreg_index);
