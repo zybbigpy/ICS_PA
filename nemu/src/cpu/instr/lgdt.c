@@ -7,6 +7,8 @@ make_instr_func(lgdt) {
     uint32_t src_16_47 = instr_fetch(eip + 3, 4);
     switch(data_size) {
         case 16:
+            cpu.gdtr.limit = src_15;
+            cpu.gdtr.base = src_16_47&0xFFFFFFH;
 
         case 32:
         default: pritf("error! in lgdt\n.");
