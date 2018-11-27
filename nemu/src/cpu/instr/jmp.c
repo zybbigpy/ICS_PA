@@ -72,7 +72,7 @@ make_instr_func(jmp_far_imm) {
         // }
         // return len;
 
-    int len = 0;
+    int len = 3 + data_size/8;
     uint32_t ptr_15 = 0;
     uint32_t ptr_16_32 = 0;
     uint32_t ptr_16_47 = 0;
@@ -84,7 +84,6 @@ make_instr_func(jmp_far_imm) {
                 cpu.eip = ptr_16_32&0x0000FFFF;
                 cpu.segReg[SREG_CS].val = ptr_15;
                 load_sreg(SREG_CS);
-                len = 5;
                 break;
             case 32:
                 ptr_15 = instr_fetch(eip + 1, 2);
@@ -92,7 +91,6 @@ make_instr_func(jmp_far_imm) {
                 cpu.eip = ptr_16_47;
                 cpu.segReg[SREG_CS].val = ptr_15;
                 load_sreg(SREG_CS);
-                len = 7;
                 break;
             default:
                 break;
