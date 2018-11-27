@@ -66,7 +66,7 @@ make_instr_func(jmp_far_imm) {
                 break;
             case 32:
                 uint16_t ptr_15 = instr_fetch(eip + 1, 2);
-                uint32_t ptr_16_47 = instr_fetch(eip + 3, 2);
+                uint32_t ptr_16_47 = instr_fetch(eip + 3, 4);
                 cpu.eip = ptr_16_47;
                 cpu.segReg[SREG_CS].val = ptr_15;
                 load_sreg(SREG_CS);
