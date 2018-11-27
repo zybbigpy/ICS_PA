@@ -53,5 +53,17 @@ make_instr_func(jmp_near_indirect) {
 }
 
 make_instr_func(jmp_far_imm) {
-        
+    int len = 0;
+    if(cpu.cr0.pe == 0) {// real mode
+        switch(data_size) {
+            case 16:
+                uint16_t ptr_15 = instr_fetch(eip + 3, 2);
+                uint16_t ptr_16_32 = instr_fetch(eip + 1, 2);
+                break;
+            case 32:
+                break;
+            default:
+                break;
+        }
+    }
 }
