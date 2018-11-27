@@ -41,6 +41,7 @@ make_instr_func(jmp_short) {
 make_instr_func(jmp_near_indirect) {
         OPERAND rm;
         rm.data_size = data_size;
+        rm.sreg = SREG_CS;
         int len = 1;
         // write addr and type for opr_rm
         len += modrm_rm(eip + 1, &rm);
