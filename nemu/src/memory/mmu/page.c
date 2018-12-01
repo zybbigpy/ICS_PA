@@ -20,7 +20,6 @@ paddr_t page_translate(laddr_t laddr) {
 	assert(pte.present == 1);
 	paddr = (pte.page_frame) << 12 + OFFSET;
 	return paddr;
-
 #else	
 	return tlb_read(laddr) | (laddr & PAGE_MASK);;
 #endif
