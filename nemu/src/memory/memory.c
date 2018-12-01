@@ -41,7 +41,9 @@ uint32_t laddr_read(laddr_t laddr, size_t len) {
 #ifndef IA32_PAGE
 	return paddr_read(laddr, len);
 #else
-
+	if(cpu.cr0.pg == 1) {
+		
+	}
 #endif
 }
 
