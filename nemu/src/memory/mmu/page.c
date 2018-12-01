@@ -12,10 +12,10 @@ paddr_t page_translate(laddr_t laddr) {
 	uint32_t paddr = 0;
 	uint32_t page_dir_base_addr = cpu.cr3.pdbr << 12;
 	PDE pde;
-	memcpy(&pde, hw_mem + page_dir_base_addr + DIR*4, 4);
+	memcpy(&pde, hw_mem + page_dir_base_addr + DIR * 4, 4);
 	uint32_t page_tbl_base_addr = pde.page_frame << 12;
 	PTE pte;
-	memcpy(&pte, hw_mem + page_tbl_base_addr + PAGE*4, 4);
+	memcpy(&pte, hw_mem + page_tbl_base_addr + PAGE * 4, 4);
 	paddr = pte.page_frame << 12 + OFFSET;
 	return paddr;
 
