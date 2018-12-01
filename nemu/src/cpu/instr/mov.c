@@ -306,7 +306,7 @@ make_instr_func(mov_r2c_l) {
 			cpu.cr0.val = cpu.gpr[gpr_index].val;
 			break;
 		case 0x3:
-			//cpu.cr3.val = cpu.gpr[gpr_index].val;
+			cpu.cr3.val = cpu.gpr[gpr_index].val;
 			break;
 		default:
 			break;
@@ -327,7 +327,7 @@ make_instr_func(mov_c2r_l) {
 			cpu.gpr[gpr_index].val = cpu.cr0.val;
 			break;
 		case 0x3:
-			//cpu.gpr[gpr_index].val = cpu.cr3.val;
+			cpu.gpr[gpr_index].val = cpu.cr3.val;
 			break;
 		default:
 			break;
