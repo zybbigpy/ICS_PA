@@ -25,6 +25,15 @@ typedef union {
 	uint32_t val;
 } CR0;
 
+// define the structure of CR3;
+
+typedef union {
+	struct {
+
+	};
+	uint32_t val;
+} CR3;
+
 // define the structure of SegReg
 
 typedef struct{
