@@ -17,6 +17,7 @@ paddr_t page_translate(laddr_t laddr) {
 	uint32_t page_tbl_base_addr = pde.page_frame << 12;
 	PTE pte;
 	memcpy(&pte, hw_mem + page_tbl_base_addr + PAGE * 4, 4);
+	assert(pte.present == 1);
 	paddr = (pte.page_frame) << 12 + OFFSET;
 	return paddr;
 
