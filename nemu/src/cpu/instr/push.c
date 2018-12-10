@@ -60,6 +60,7 @@ make_instr_func(pusha) {
   Ebx.addr = cpu.esp;
   Ebx.sreg = SREG_SS;
   Ebx.val = cpu.ebx;
+  Ebx.type = OPR_MEM;
   operand_write(&Ebx);
 
   //push temp
@@ -68,6 +69,7 @@ make_instr_func(pusha) {
   Temp.addr = cpu.esp;
   Temp.sreg = SREG_SS;
   Temp.val = temp;
+  Temp.type = OPR_MEM;
   operand_write(&Temp);
 
   //push ebp
@@ -76,6 +78,7 @@ make_instr_func(pusha) {
   Ebp.addr = cpu.esp;
   Ebp.sreg = SREG_SS;
   Ebp.val = cpu.ebp;
+  Ebp.type = OPR_MEM;
   operand_write(&Ebp);
 
   //push esi
