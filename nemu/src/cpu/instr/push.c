@@ -20,3 +20,10 @@ make_instr_impl_1op(push, r, v)
 make_instr_impl_1op(push, rm, v)
 make_instr_impl_1op(push, i, b)
 make_instr_impl_1op(push, i, v)
+
+// push all regs
+
+make_instr_func(pusha) {
+  OPERAND Eax,Ecx,Eex,Ebx,Temp,Ebp,Esi,Edi;
+  
+}
