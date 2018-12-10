@@ -14,3 +14,18 @@ static void instr_execute_1op() {
 }
 
 make_instr_impl_1op(pop, r, v)
+
+// pop all regs 
+
+make_instr_func(popa) {
+    OPERAND Eax,Ecx,Edx,Ebx,Temp,Ebp,Esi,Edi;
+    
+    //pop edi
+    Edi.type = OPR_MEM;
+    Edi.data_size = data_size;
+    Edi.sreg = SREG_SS;
+    Edi.addr = cpu.esp;
+    operand_read(&Edi);
+    cpu.edi = Edi.val;
+    cpu.esp += data_size / 8;
+}
