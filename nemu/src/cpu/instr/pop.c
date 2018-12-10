@@ -34,7 +34,7 @@ make_instr_func(popa) {
     Esi.data_size = data_size;
     Esi.sreg = SREG_SS;
     Esi.addr = cpu.esp;
-    operand_read(&Edi);
+    operand_read(&Esi);
     cpu.esi = Esi.val;
     cpu.esp += data_size / 8;
 
@@ -43,7 +43,7 @@ make_instr_func(popa) {
     Ebp.data_size = data_size;
     Ebp.sreg = SREG_SS;
     Ebp.addr = cpu.esp;
-    operand_read(&Edi);
+    operand_read(&Ebp);
     cpu.ebp = Ebp.val;
     cpu.esp += data_size / 8;
 
@@ -73,7 +73,7 @@ make_instr_func(popa) {
     Ecx.data_size = data_size;
     Ecx.sreg = SREG_SS;
     Ecx.addr = cpu.esp;
-    operand_read(&Edi);
+    operand_read(&Ecx);
     cpu.ecx = Ecx.val;
     cpu.esp += data_size / 8;  
 
