@@ -51,7 +51,7 @@ make_instr_func(pusha) {
   Edx.addr = cpu.esp;
   Edx.sreg = SREG_SS;
   Edx.val = cpu.edx;
-  Edx.type = 
+  Edx.type = OPR_MEM;
   operand_write(&Edx);
 
   //push ebx
