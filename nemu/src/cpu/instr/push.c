@@ -31,4 +31,7 @@ make_instr_func(pusha) {
   cpu.esp -= data_size / 8;
   Eax.data_size = data_size;
   Eax.addr = cpu.esp;
+  Eax.sreg = SREG_SS;
+  Eax.val = cpu.eax;
+  operand_write(&Eax);
 }
