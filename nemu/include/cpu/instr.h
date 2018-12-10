@@ -59,5 +59,6 @@ extern uint8_t data_size;
 //pa4
 #include "cpu/instr/lidt.h"
 #include "cpu/instr/cli.h"
+#include "cpu/instr/sti.h"
 
 #endif
