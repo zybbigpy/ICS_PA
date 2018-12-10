@@ -25,5 +25,10 @@ make_instr_impl_1op(push, i, v)
 
 make_instr_func(pusha) {
   OPERAND Eax,Ecx,Eex,Ebx,Temp,Ebp,Esi,Edi;
-  
+  uint32_t temp = cpu.esp;
+
+  //push eax
+  cpu.esp -= data_size / 8;
+  Eax.data_size = data_size;
+  Eax.addr = cpu.esp;
 }
