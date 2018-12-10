@@ -82,11 +82,9 @@ make_instr_func(popa) {
     Eax.data_size = data_size;
     Eax.sreg = SREG_SS;
     Eax.addr = cpu.esp;
-    operand_read(&Edi);
+    operand_read(&Eax);
     cpu.eax = Eax.val;
     cpu.esp += data_size / 8; 
 
     return 1;
-
-
 }
