@@ -74,5 +74,20 @@ make_instr_func(pusha) {
   Ebp.sreg = SREG_SS;
   Ebp.val = cpu.ebp;
   operand_write(&Ebp);
+
+  //push esi
+  cpu.esp -= data_size / 8;
+  Esi.data_size = data_size;
+  Esi.addr = cpu.esp;
+  Esi.sreg = SREG_SS;
+  Esi.val = cpu.esi;
+  operand_write(&Esi);
   
+  //push edi
+  cpu.esp -= data_size / 8;
+  Edi.data_size = data_size;
+  Edi.addr = cpu.esp;
+  Edi.sreg = SREG_SS;
+  Edi.val = cpu.edi;
+  operand_write(&Edi);  
 }
