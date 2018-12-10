@@ -28,4 +28,37 @@ make_instr_func(popa) {
     operand_read(&Edi);
     cpu.edi = Edi.val;
     cpu.esp += data_size / 8;
+
+    //pop esi
+    Esi.type = OPR_MEM;
+    Esi.data_size = data_size;
+    Esi.sreg = SREG_SS;
+    Esi.addr = cpu.esp;
+    operand_read(&Edi);
+    cpu.esi = Esi.val;
+    cpu.esp += data_size / 8;
+
+    //pop ebp
+    Ebp.type = OPR_MEM;
+    Ebp.data_size = data_size;
+    Ebp.sreg = SREG_SS;
+    Ebp.addr = cpu.esp;
+    operand_read(&Edi);
+    cpu.esi = Ebp.val;
+    cpu.esp += data_size / 8;
+
+    //pop temp and throw away
+    cpu.esp += data_size / 8;
+
+    //pop ebx
+    Ebx.type = OPR_MEM;
+    Ebx.data_size = data_size;
+    Ebx.sreg = SREG_SS;
+    Ebx.addr = cpu.esp;
+    operand_read(&Edi);
+    cpu.esi = Ebx.val;
+    cpu.esp += data_size / 8;
+
+
+
 }
