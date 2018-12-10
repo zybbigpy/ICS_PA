@@ -87,6 +87,7 @@ make_instr_func(pusha) {
   Esi.addr = cpu.esp;
   Esi.sreg = SREG_SS;
   Esi.val = cpu.esi;
+  Esi.type = OPR_MEM;
   operand_write(&Esi);
   
   //push edi
@@ -95,6 +96,7 @@ make_instr_func(pusha) {
   Edi.addr = cpu.esp;
   Edi.sreg = SREG_SS;
   Edi.val = cpu.edi;
+  Edi.type = OPR_MEM;
   operand_write(&Edi);  
 
   return 1;
