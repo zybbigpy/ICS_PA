@@ -23,6 +23,7 @@ extern uint8_t data_size;
 #include "cpu/instr/x87.h"
 
 /* TODO: add more instructions here */
+// pa2
 #include "cpu/instr/push.h"
 #include "cpu/instr/pop.h"
 #include "cpu/instr/call.h"
@@ -57,5 +58,6 @@ extern uint8_t data_size;
 
 //pa4
 #include "cpu/instr/lidt.h"
+#include "cpu/instr/cli.h"
 
 #endif
