@@ -44,7 +44,7 @@ make_instr_func(popa) {
     Ebp.sreg = SREG_SS;
     Ebp.addr = cpu.esp;
     operand_read(&Edi);
-    cpu.esi = Ebp.val;
+    cpu.ebp = Ebp.val;
     cpu.esp += data_size / 8;
 
     //pop temp and throw away
@@ -55,10 +55,38 @@ make_instr_func(popa) {
     Ebx.data_size = data_size;
     Ebx.sreg = SREG_SS;
     Ebx.addr = cpu.esp;
-    operand_read(&Edi);
-    cpu.esi = Ebx.val;
+    operand_read(&Ebx);
+    cpu.ebx = Ebx.val;
     cpu.esp += data_size / 8;
 
+    //pop edx
+    Edx.type = OPR_MEM;
+    Edx.data_size = data_size;
+    Edx.sreg = SREG_SS;
+    Edx.addr = cpu.esp;
+    operand_read(&Edx);
+    cpu.edx = Edx.val;
+    cpu.esp += data_size / 8;
+
+    //pop ecx
+    Ecx.type = OPR_MEM;
+    Ecx.data_size = data_size;
+    Ecx.sreg = SREG_SS;
+    Ecx.addr = cpu.esp;
+    operand_read(&Edi);
+    cpu.ecx = Ecx.val;
+    cpu.esp += data_size / 8;  
+
+    //pop eax
+    Eax.type = OPR_MEM;
+    Eax.data_size = data_size;
+    Eax.sreg = SREG_SS;
+    Eax.addr = cpu.esp;
+    operand_read(&Edi);
+    cpu.eax = Eax.val;
+    cpu.esp += data_size / 8; 
+
+    return 1;
 
 
 }
