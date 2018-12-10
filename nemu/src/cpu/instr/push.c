@@ -58,4 +58,21 @@ make_instr_func(pusha) {
   Ebx.sreg = SREG_SS;
   Ebx.val = cpu.ebx;
   operand_write(&Ebx);
+
+  //push temp
+  cpu.esp -= data_size / 8;
+  Temp.data_size = data_size;
+  Temp.addr = cpu.esp;
+  Temp.sreg = SREG_SS;
+  Temp.val = temp;
+  operand_write(&Temp);
+
+  //push ebp
+  cpu.esp -= data_size / 8;
+  Ebp.data_size = data_size;
+  Ebp.addr = cpu.esp;
+  Ebp.sreg = SREG_SS;
+  Ebp.val = cpu.ebp;
+  operand_write(&Ebp);
+  
 }
