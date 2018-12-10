@@ -10,6 +10,12 @@ typedef struct {
 	uint32_t base  :32;	
 } GDTR;
 
+// define the structure of IDTR
+typedef struct {
+	uint32_t limit :16;
+	uint32_t base  :32;	
+} IDTR;
+
 // define the structure of CR0
 
 typedef union {
