@@ -33,6 +33,7 @@ make_instr_func(pusha) {
   Eax.addr = cpu.esp;
   Eax.sreg = SREG_SS;
   Eax.val = cpu.eax;
+  Eax.type = OPR_MEM;
   operand_write(&Eax);
   
   //push ecx
