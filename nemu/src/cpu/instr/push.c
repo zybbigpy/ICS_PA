@@ -23,14 +23,14 @@ make_instr_impl_1op(push, i, v)
 
 // push all regs
 
-#define push(opr, reg)        /
-cpu.esp -= data_size / 8;     /
-Eax.data_size = data_size;
-Eax.addr = cpu.esp;
-Eax.sreg = SREG_SS;
-Eax.val = cpu.eax;
-Eax.type = OPR_MEM;
-operand_write(&Eax);
+#define push(opr, reg)        \
+cpu.esp -= data_size / 8;     \
+opr.data_size = data_size;    \
+opr.addr = cpu.esp;           \
+opr.sreg = SREG_SS;           \
+opr.val = cpu.reg;            \
+opr.type = OPR_MEM;           \
+operand_write(&opr);          \ 
 
 make_instr_func(pusha) {
   OPERAND Eax,Ecx,Edx,Ebx,Esp,Ebp,Esi,Edi;
