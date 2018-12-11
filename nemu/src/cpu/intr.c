@@ -32,9 +32,9 @@ void raise_intr(uint8_t intr_no) {
 	
 	GateDesc idt;
 	idt.val[0] = laddr_read(cpu.idtr.base + intr_no * 8, 4);
-	idt.val[1] = laddr_read(cpu.idtr.base + intr_no * 8 + 4,4);
+	idt.val[1] = laddr_read(cpu.idtr.base + intr_no * 8 + 4, 4);
 	cpu.eip = (idt.offset_31_16 << 16) + idt.offset_15_0;
-
+	cpu.cs.val = idt.selector;
 #endif
 }
 
