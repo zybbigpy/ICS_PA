@@ -14,7 +14,7 @@ operand_write(&help);      \
 
 void raise_intr(uint8_t intr_no) {
 #ifdef IA32_INTR
-	//printf("Please implement raise_intr()");
+	printf("int_ \n");
 	//assert(0);
 	
 	//push 
