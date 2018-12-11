@@ -37,22 +37,24 @@ make_instr_func(pusha) {
   uint32_t temp = cpu.esp;
 
   //push eax
-  cpu.esp -= data_size / 8;
-  Eax.data_size = data_size;
-  Eax.addr = cpu.esp;
-  Eax.sreg = SREG_SS;
-  Eax.val = cpu.eax;
-  Eax.type = OPR_MEM;
-  operand_write(&Eax);
+  push(Eax, eax)
+  // cpu.esp -= data_size / 8;
+  // Eax.data_size = data_size;
+  // Eax.addr = cpu.esp;
+  // Eax.sreg = SREG_SS;
+  // Eax.val = cpu.eax;
+  // Eax.type = OPR_MEM;
+  // operand_write(&Eax);
   
   //push ecx
-  cpu.esp -= data_size / 8;
-  Ecx.data_size = data_size;
-  Ecx.addr = cpu.esp;
-  Ecx.sreg = SREG_SS;
-  Ecx.val = cpu.ecx;
-  Ecx.type = OPR_MEM;
-  operand_write(&Ecx);
+  push(Ecx, ecx)
+  // cpu.esp -= data_size / 8;
+  // Ecx.data_size = data_size;
+  // Ecx.addr = cpu.esp;
+  // Ecx.sreg = SREG_SS;
+  // Ecx.val = cpu.ecx;
+  // Ecx.type = OPR_MEM;
+  // operand_write(&Ecx);
 
   //push edx
   cpu.esp -= data_size / 8;
