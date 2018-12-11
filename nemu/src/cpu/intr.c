@@ -18,27 +18,22 @@ void raise_intr(uint8_t intr_no) {
 	//assert(0);
 	
 	//push 
-	cpu.esp-=4;
+	cpu.esp -= 4;
 	vaddr_write(cpu.esp,SREG_SS,4,cpu.eflags.val);
 	//printf("esp\n");
-	cpu.esp-=2;
+	cpu.esp -= 2;
 	vaddr_write(cpu.esp,SREG_SS,2,cpu.cs.val);
-	cpu.esp-=4;
+	cpu.esp -= 4;
 	vaddr_write(cpu.esp,SREG_SS,4,cpu.eip);
 	//set flag
-	cpu.eflags.IF=0;
-	cpu.eflags.TF=0;
+	cpu.eflags.IF = 0;
+	cpu.eflags.TF = 0;
 
-	//jmp
-	GateDesc idt;
-	idt.val[0]=laddr_read(cpu.idtr.base+intr_no*8,4);
-	idt.val[1]=laddr_read(cpu.idtr.base+intr_no*8+4,4);
-	cpu.eip=(idt.offset_31_16<<16)+idt.offset_15_0;
-	//cpu.CS.val=GD.Gatedesc.type;
-	//load_sreg(SREG_CS);
-	//printf("IDTR is %x\n",cpu.IDTR.base);
 	
-	return;
+	GateDesc idt;
+	idt.val[0] = laddr_read(cpu.idtr.base + intr_no * 8, 4);
+	idt.val[1] = laddr_read(cpu.idtr.base + intr_no * 8 + 4,4);
+	cpu.eip = (idt.offset_31_16 << 16) + idt.offset_15_0;
 
 #endif
 }
