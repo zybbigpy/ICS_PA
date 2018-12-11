@@ -9,12 +9,15 @@ help.data_size = data_size;\
 help.addr = cpu.esp;       \
 help.sreg = SREG_SS;       \
 help.val = cpu.reg;        \
+help.type = OPR_MEM		   \
 operand_write(&help);      \
 
 void raise_intr(uint8_t intr_no) {
 #ifdef IA32_INTR
 	//printf("Please implement raise_intr()");
 	//assert(0);
+	push(eflags.val)
+
 	laddr_t idt_entry = cpu.idtr.base + intr_no *sizeof(GateDesc);
 	GateDesc idt;
 	idt.val[0] = laddr_read(idt_entry, 4);
