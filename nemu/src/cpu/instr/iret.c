@@ -23,6 +23,6 @@ make_instr_func(iret) {
     cpu.cs.val = help.val;         
     cpu.esp += 2;  
     pop(eflags.val, help2)
-    printf("iret!\n");
+    //printf("iret!\n");
     return 0;
 }

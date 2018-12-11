@@ -14,7 +14,7 @@ operand_write(&help);      \
 
 void raise_intr(uint8_t intr_no) {
 #ifdef IA32_INTR
-	printf("int_ \n");
+	//printf("int_ \n");
 	//assert(0);
 	
 	//push 
@@ -29,7 +29,6 @@ void raise_intr(uint8_t intr_no) {
 	cpu.eflags.IF = 0;
 	cpu.eflags.TF = 0;
 
-	
 	GateDesc idt;
 	idt.val[0] = laddr_read(cpu.idtr.base + intr_no * 8, 4);
 	idt.val[1] = laddr_read(cpu.idtr.base + intr_no * 8 + 4, 4);
