@@ -73,31 +73,34 @@ make_instr_func(popa) {
     // cpu.esp += data_size / 8;
 
     //pop edx
-    Edx.type = OPR_MEM;
-    Edx.data_size = data_size;
-    Edx.sreg = SREG_SS;
-    Edx.addr = cpu.esp;
-    operand_read(&Edx);
-    cpu.edx = Edx.val;
-    cpu.esp += data_size / 8;
+    pop(Edx, edx)
+    // Edx.type = OPR_MEM;
+    // Edx.data_size = data_size;
+    // Edx.sreg = SREG_SS;
+    // Edx.addr = cpu.esp;
+    // operand_read(&Edx);
+    // cpu.edx = Edx.val;
+    // cpu.esp += data_size / 8;
 
     //pop ecx
-    Ecx.type = OPR_MEM;
-    Ecx.data_size = data_size;
-    Ecx.sreg = SREG_SS;
-    Ecx.addr = cpu.esp;
-    operand_read(&Ecx);
-    cpu.ecx = Ecx.val;
-    cpu.esp += data_size / 8;  
+    pop(Ecx, ecx)
+    // Ecx.type = OPR_MEM;
+    // Ecx.data_size = data_size;
+    // Ecx.sreg = SREG_SS;
+    // Ecx.addr = cpu.esp;
+    // operand_read(&Ecx);
+    // cpu.ecx = Ecx.val;
+    // cpu.esp += data_size / 8;  
 
     //pop eax
-    Eax.type = OPR_MEM;
-    Eax.data_size = data_size;
-    Eax.sreg = SREG_SS;
-    Eax.addr = cpu.esp;
-    operand_read(&Eax);
-    cpu.eax = Eax.val;
-    cpu.esp += data_size / 8; 
+    pop(Eax, eax)
+    // Eax.type = OPR_MEM;
+    // Eax.data_size = data_size;
+    // Eax.sreg = SREG_SS;
+    // Eax.addr = cpu.esp;
+    // operand_read(&Eax);
+    // cpu.eax = Eax.val;
+    // cpu.esp += data_size / 8; 
 
     return 1;
 }
