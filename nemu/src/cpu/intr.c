@@ -8,6 +8,9 @@ void raise_intr(uint8_t intr_no) {
 	//printf("Please implement raise_intr()");
 	//assert(0);
 	laddr_t idt_entry = cpu.idtr.base + intr_no *sizeof(GateDesc);
+	GateDesc idt;
+	idt.val[0] = laddr_read(idt_entry, 4);
+	idt.val[1] = laddr_read(idt_entry + 4, 4);
 
 #endif
 }
