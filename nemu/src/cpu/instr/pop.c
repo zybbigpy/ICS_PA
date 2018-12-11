@@ -17,6 +17,15 @@ make_instr_impl_1op(pop, r, v)
 
 // pop all regs 
 
+#define pop(opr, reg)           \
+opr.type = OPR_MEM;             \
+opr.data_size = data_size;      \
+opr.sreg = SREG_SS;             \
+opr.addr = cpu.esp;             \
+operand_read(&opr);             \
+opr.reg = opr.val;              \
+cpu.esp += data_size / 8;       \
+
 make_instr_func(popa) {
     OPERAND Eax,Ecx,Edx,Ebx,Ebp,Esi,Edi;
     
