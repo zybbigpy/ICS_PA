@@ -57,22 +57,24 @@ make_instr_func(pusha) {
   // operand_write(&Ecx);
 
   //push edx
-  cpu.esp -= data_size / 8;
-  Edx.data_size = data_size;
-  Edx.addr = cpu.esp;
-  Edx.sreg = SREG_SS;
-  Edx.val = cpu.edx;
-  Edx.type = OPR_MEM;
-  operand_write(&Edx);
+  push(Edx, edx)
+  // cpu.esp -= data_size / 8;
+  // Edx.data_size = data_size;
+  // Edx.addr = cpu.esp;
+  // Edx.sreg = SREG_SS;
+  // Edx.val = cpu.edx;
+  // Edx.type = OPR_MEM;
+  // operand_write(&Edx);
 
   //push ebx
-  cpu.esp -= data_size / 8;
-  Ebx.data_size = data_size;
-  Ebx.addr = cpu.esp;
-  Ebx.sreg = SREG_SS;
-  Ebx.val = cpu.ebx;
-  Ebx.type = OPR_MEM;
-  operand_write(&Ebx);
+  push(Ebx, ebx)
+  // cpu.esp -= data_size / 8;
+  // Ebx.data_size = data_size;
+  // Ebx.addr = cpu.esp;
+  // Ebx.sreg = SREG_SS;
+  // Ebx.val = cpu.ebx;
+  // Ebx.type = OPR_MEM;
+  // operand_write(&Ebx);
 
   //push temp
   cpu.esp -= data_size / 8;
@@ -84,13 +86,14 @@ make_instr_func(pusha) {
   operand_write(&Esp);
 
   //push ebp
-  cpu.esp -= data_size / 8;
-  Ebp.data_size = data_size;
-  Ebp.addr = cpu.esp;
-  Ebp.sreg = SREG_SS;
-  Ebp.val = cpu.ebp;
-  Ebp.type = OPR_MEM;
-  operand_write(&Ebp);
+  push(Ebp, ebp)
+  // cpu.esp -= data_size / 8;
+  // Ebp.data_size = data_size;
+  // Ebp.addr = cpu.esp;
+  // Ebp.sreg = SREG_SS;
+  // Ebp.val = cpu.ebp;
+  // Ebp.type = OPR_MEM;
+  // operand_write(&Ebp);
 
   //push esi
   cpu.esp -= data_size / 8;
