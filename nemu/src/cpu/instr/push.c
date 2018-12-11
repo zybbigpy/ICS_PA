@@ -30,7 +30,7 @@ opr.addr = cpu.esp;           \
 opr.sreg = SREG_SS;           \
 opr.val = cpu.reg;            \
 opr.type = OPR_MEM;           \
-operand_write(&opr);          \     
+operand_write(&opr);              
 
 make_instr_func(pusha) {
   OPERAND Eax,Ecx,Edx,Ebx,Esp,Ebp,Esi,Edi;
