@@ -30,6 +30,7 @@ void raise_intr(uint8_t intr_no) {
 
 	cpu.eip = (idt.offset_31_16 << 16) + idt.offset_15_0;
 	cpu.cs.val = idt.selector;
+	load_sreg(SREG_CS);
 
 #endif
 }
