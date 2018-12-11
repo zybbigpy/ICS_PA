@@ -28,7 +28,7 @@ void raise_intr(uint8_t intr_no) {
 	idt.val[0] = laddr_read(idt_entry, 4);
 	idt.val[1] = laddr_read(idt_entry + 4, 4);
 
-	cpu.eip = idt.offset_31_16;
+	cpu.eip = (idt.offset_31_16 << 16) + idt.offset_15_0;
 	cpu.cs.val = idt.selector;
 
 #endif
