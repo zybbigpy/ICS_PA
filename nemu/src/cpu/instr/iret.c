@@ -12,5 +12,7 @@ cpu.esp += data_size / 8;   \
 
 make_instr_func(iret) {
     pop(eip)
+    pop(cs)
+    pop(eflags)
     return 0;
 }
