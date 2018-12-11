@@ -2,7 +2,7 @@
 #include "cpu/instr.h"
 #include "memory/memory.h"
 
-#define push(reg, size)    \
+#define push(reg, size, help)    \
 OPERAND help;		       \
 cpu.esp -= size / 8;   	   \
 help.data_size = size;     \
@@ -16,9 +16,9 @@ void raise_intr(uint8_t intr_no) {
 #ifdef IA32_INTR
 	//printf("Please implement raise_intr()");
 	//assert(0);
-	push(eflags.val, data_size)
-	push(cs.val, 16)
-	push(eip, data_size)
+	push(eflags.val, data_size, help1)
+	push(cs.val, 16, help2)
+	push(eip, data_size, help3)
 
 	//cpu.eflags.IF = 0;
 	//cpu.eflags.TF = 0;
