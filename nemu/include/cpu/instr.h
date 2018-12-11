@@ -53,14 +53,14 @@ extern uint8_t data_size;
 #include "cpu/instr/cmps.h"
 #include "cpu/instr/stos.h"
 
-//pa3
+// pa3
 #include "cpu/instr/lgdt.h"
 
-//pa4
+// pa4
 #include "cpu/instr/lidt.h"
 #include "cpu/instr/cli.h"
 #include "cpu/instr/sti.h"
-#include "cpu/instr/int_.h"
+#include "cpu/instr/int.h"
 #include "cpu/instr/iret.h"
 
 #endif
