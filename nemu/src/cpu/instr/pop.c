@@ -18,7 +18,7 @@ make_instr_impl_1op(pop, r, v)
 // pop all regs 
 
 make_instr_func(popa) {
-    OPERAND Eax,Ecx,Edx,Ebx,Temp,Ebp,Esi,Edi;
+    OPERAND Eax,Ecx,Edx,Ebx,Ebp,Esi,Edi;
     
     //pop edi
     Edi.type = OPR_MEM;
