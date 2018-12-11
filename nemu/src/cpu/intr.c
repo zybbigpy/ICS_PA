@@ -22,10 +22,14 @@ void raise_intr(uint8_t intr_no) {
 
 	cpu.eflags.IF = 0;
 	cpu.eflags.TF = 0;
+
 	laddr_t idt_entry = cpu.idtr.base + intr_no *sizeof(GateDesc);
 	GateDesc idt;
 	idt.val[0] = laddr_read(idt_entry, 4);
 	idt.val[1] = laddr_read(idt_entry + 4, 4);
+
+	cpu.eip = idt.offset_31_16;
+	cpu.cs.val = idt.selector;
 
 #endif
 }
