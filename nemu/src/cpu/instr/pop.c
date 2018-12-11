@@ -23,38 +23,41 @@ opr.data_size = data_size;      \
 opr.sreg = SREG_SS;             \
 opr.addr = cpu.esp;             \
 operand_read(&opr);             \
-opr.reg = opr.val;              \
+cpu.reg = opr.val;              \
 cpu.esp += data_size / 8;       \
 
 make_instr_func(popa) {
     OPERAND Eax,Ecx,Edx,Ebx,Ebp,Esi,Edi;
     
     //pop edi
-    Edi.type = OPR_MEM;
-    Edi.data_size = data_size;
-    Edi.sreg = SREG_SS;
-    Edi.addr = cpu.esp;
-    operand_read(&Edi);
-    cpu.edi = Edi.val;
-    cpu.esp += data_size / 8;
+    pop(Edi, edi)
+    // Edi.type = OPR_MEM;
+    // Edi.data_size = data_size;
+    // Edi.sreg = SREG_SS;
+    // Edi.addr = cpu.esp;
+    // operand_read(&Edi);
+    // cpu.edi = Edi.val;
+    // cpu.esp += data_size / 8;
 
     //pop esi
-    Esi.type = OPR_MEM;
-    Esi.data_size = data_size;
-    Esi.sreg = SREG_SS;
-    Esi.addr = cpu.esp;
-    operand_read(&Esi);
-    cpu.esi = Esi.val;
-    cpu.esp += data_size / 8;
+    pop(Esi, esi)
+    // Esi.type = OPR_MEM;
+    // Esi.data_size = data_size;
+    // Esi.sreg = SREG_SS;
+    // Esi.addr = cpu.esp;
+    // operand_read(&Esi);
+    // cpu.esi = Esi.val;
+    // cpu.esp += data_size / 8;
 
     //pop ebp
-    Ebp.type = OPR_MEM;
-    Ebp.data_size = data_size;
-    Ebp.sreg = SREG_SS;
-    Ebp.addr = cpu.esp;
-    operand_read(&Ebp);
-    cpu.ebp = Ebp.val;
-    cpu.esp += data_size / 8;
+    pop(Ebp, ebp)
+    // Ebp.type = OPR_MEM;
+    // Ebp.data_size = data_size;
+    // Ebp.sreg = SREG_SS;
+    // Ebp.addr = cpu.esp;
+    // operand_read(&Ebp);
+    // cpu.ebp = Ebp.val;
+    // cpu.esp += data_size / 8;
 
     //pop temp and throw away
     cpu.esp += data_size / 8;
