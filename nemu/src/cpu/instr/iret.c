@@ -11,5 +11,6 @@ cpu.reg = help.val;         \
 cpu.esp += data_size / 8;   \
 
 make_instr_func(iret) {
+    pop(eip)
     return 0;
 }
