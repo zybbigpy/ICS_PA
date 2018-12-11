@@ -8,7 +8,6 @@ make_instr_func(lgdt) {
 	len += modrm_rm(eip + 1, &data);
 	operand_read(&data);
 	cpu.gdtr.limit = data.val;
-	//printf("addr is %x\n",data.addr);
 	data.data_size = 32;
 	data.addr += 2;
 	operand_read(&data);
