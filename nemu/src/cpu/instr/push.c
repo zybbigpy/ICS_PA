@@ -30,7 +30,7 @@ opr.addr = cpu.esp;           \
 opr.sreg = SREG_SS;           \
 opr.val = cpu.reg;            \
 opr.type = OPR_MEM;           \
-operand_write(&opr);          \ 
+operand_write(&opr);          \     
 
 make_instr_func(pusha) {
   OPERAND Eax,Ecx,Edx,Ebx,Esp,Ebp,Esi,Edi;
@@ -96,22 +96,24 @@ make_instr_func(pusha) {
   // operand_write(&Ebp);
 
   //push esi
-  cpu.esp -= data_size / 8;
-  Esi.data_size = data_size;
-  Esi.addr = cpu.esp;
-  Esi.sreg = SREG_SS;
-  Esi.val = cpu.esi;
-  Esi.type = OPR_MEM;
-  operand_write(&Esi);
+  push(Esi, esi)
+  // cpu.esp -= data_size / 8;
+  // Esi.data_size = data_size;
+  // Esi.addr = cpu.esp;
+  // Esi.sreg = SREG_SS;
+  // Esi.val = cpu.esi;
+  // Esi.type = OPR_MEM;
+  // operand_write(&Esi);
   
   //push edi
-  cpu.esp -= data_size / 8;
-  Edi.data_size = data_size;
-  Edi.addr = cpu.esp;
-  Edi.sreg = SREG_SS;
-  Edi.val = cpu.edi;
-  Edi.type = OPR_MEM;
-  operand_write(&Edi);  
+  push(Edi, edi)
+  // cpu.esp -= data_size / 8;
+  // Edi.data_size = data_size;
+  // Edi.addr = cpu.esp;
+  // Edi.sreg = SREG_SS;
+  // Edi.val = cpu.edi;
+  // Edi.type = OPR_MEM;
+  // operand_write(&Edi);  
 
   return 1;
 }
