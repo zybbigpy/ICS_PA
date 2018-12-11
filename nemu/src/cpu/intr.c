@@ -17,7 +17,7 @@ void raise_intr(uint8_t intr_no) {
 	//printf("Please implement raise_intr()");
 	//assert(0);
 	push(eflags.val, data_size, help1)
-	push(cs.val, 16, help2)
+	push(cs.val, data_size, help2)
 	push(eip, data_size, help3)
 
 	//cpu.eflags.IF = 0;

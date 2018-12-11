@@ -16,7 +16,7 @@ make_instr_func(iret) {
     // pop cs
     OPERAND help;              
     help.type = OPR_MEM;       
-    help.data_size = 16;   
+    help.data_size = data_size;   
     help.addr = cpu.esp;       
     help.sreg = SREG_SS;       
     operand_read(&help);       
