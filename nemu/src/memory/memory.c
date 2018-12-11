@@ -68,8 +68,8 @@ void laddr_write(laddr_t laddr, size_t len, uint32_t data) {
 			//printf("page across assert!\n");
 			//assert(0);
 			uint32_t temp = data;
-			for(uint32_t i=0; i<len; ++i) {
-				laddr_write(paddr+i, 1, (temp & 0xff));
+			for(uint32_t i = 0; i < len; ++i) {
+				laddr_write(paddr + i, 1, (temp & 0xff));
 				temp >>= 8;
 			}
 			return ;
