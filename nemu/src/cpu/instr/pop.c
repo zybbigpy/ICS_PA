@@ -63,13 +63,14 @@ make_instr_func(popa) {
     cpu.esp += data_size / 8;
 
     //pop ebx
-    Ebx.type = OPR_MEM;
-    Ebx.data_size = data_size;
-    Ebx.sreg = SREG_SS;
-    Ebx.addr = cpu.esp;
-    operand_read(&Ebx);
-    cpu.ebx = Ebx.val;
-    cpu.esp += data_size / 8;
+    pop(Ebx, ebx)
+    // Ebx.type = OPR_MEM;
+    // Ebx.data_size = data_size;
+    // Ebx.sreg = SREG_SS;
+    // Ebx.addr = cpu.esp;
+    // operand_read(&Ebx);
+    // cpu.ebx = Ebx.val;
+    // cpu.esp += data_size / 8;
 
     //pop edx
     Edx.type = OPR_MEM;
