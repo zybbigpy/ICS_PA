@@ -34,9 +34,10 @@ void raise_intr(uint8_t intr_no) {
 	cpu.eflags.TF=0;
 
 	//jmp
-	GD.val[0]=laddr_read(cpu.idtr.base+intr_no*8,4);
-	GD.val[1]=laddr_read(cpu.idtr.base+intr_no*8+4,4);
-	cpu.eip=GD.Gatedesc.offset_15_0+(GD.Gatedesc.offset_31_16<<16);
+	GateDesc idt;
+	idt.val[0]=laddr_read(cpu.idtr.base+intr_no*8,4);
+	idt.val[1]=laddr_read(cpu.idtr.base+intr_no*8+4,4);
+	cpu.eip=idt.offset_15_0+(idt.offset_31_16<<16);
 	//cpu.CS.val=GD.Gatedesc.type;
 	//load_sreg(SREG_CS);
 	//printf("IDTR is %x\n",cpu.IDTR.base);
