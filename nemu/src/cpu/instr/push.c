@@ -24,7 +24,7 @@ make_instr_impl_1op(push, i, v)
 // push all regs
 
 make_instr_func(pusha) {
-  OPERAND Eax,Ecx,Edx,Ebx,Temp,Ebp,Esi,Edi;
+  OPERAND Eax,Ecx,Edx,Ebx,Esp,Ebp,Esi,Edi;
   uint32_t temp = cpu.esp;
 
   //push eax
@@ -65,12 +65,12 @@ make_instr_func(pusha) {
 
   //push temp
   cpu.esp -= data_size / 8;
-  Temp.data_size = data_size;
-  Temp.addr = cpu.esp;
-  Temp.sreg = SREG_SS;
-  Temp.val = temp;
-  Temp.type = OPR_MEM;
-  operand_write(&Temp);
+  Esp.data_size = data_size;
+  Esp.addr = cpu.esp;
+  Esp.sreg = SREG_SS;
+  Esp.val = temp;
+  Esp.type = OPR_MEM;
+  operand_write(&Esp);
 
   //push ebp
   cpu.esp -= data_size / 8;
