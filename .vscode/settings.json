@@ -1,6 +1,7 @@
 {
     "files.associations": {
         "instr.h": "c",
-        "int.h": "c"
+        "int.h": "c",
+        "intr.h": "c"
     }
 }
