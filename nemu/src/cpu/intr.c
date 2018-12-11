@@ -20,14 +20,18 @@ void raise_intr(uint8_t intr_no) {
 	push(cs.val, 16)
 	push(eip, data_size)
 
-	cpu.eflags.IF = 0;
-	cpu.eflags.TF = 0;
+	//cpu.eflags.IF = 0;
+	//cpu.eflags.TF = 0;
 
 	laddr_t idt_entry = cpu.idtr.base + intr_no *sizeof(GateDesc);
 	GateDesc idt;
 	idt.val[0] = laddr_read(idt_entry, 4);
 	idt.val[1] = laddr_read(idt_entry + 4, 4);
 
+	assert(idt.present == 1);
+	if(idt.type == 0xe) {
+		cpu.eflags.IF = 0;
+	}
 	cpu.eip = (idt.offset_31_16 << 16) + idt.offset_15_0;
 	cpu.cs.val = idt.selector;
 	load_sreg(SREG_CS);
