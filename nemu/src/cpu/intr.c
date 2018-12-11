@@ -4,12 +4,12 @@
 
 #define push(reg)          \
 OPERAND help;		       \
-cpu.esp -= data_size / 8   \
+cpu.esp -= data_size / 8;   \
 help.data_size = data_size;\
 help.addr = cpu.esp;       \
 help.sreg = SREG_SS;       \
 help.val = cpu.reg;        \
-help.type = OPR_MEM		   \
+help.type = OPR_MEM;		\
 operand_write(&help);      \
 
 void raise_intr(uint8_t intr_no) {
@@ -17,7 +17,7 @@ void raise_intr(uint8_t intr_no) {
 	//printf("Please implement raise_intr()");
 	//assert(0);
 	push(eflags.val)
-
+	push(eip)
 	laddr_t idt_entry = cpu.idtr.base + intr_no *sizeof(GateDesc);
 	GateDesc idt;
 	idt.val[0] = laddr_read(idt_entry, 4);
