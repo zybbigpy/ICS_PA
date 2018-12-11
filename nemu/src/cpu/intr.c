@@ -19,6 +19,9 @@ void raise_intr(uint8_t intr_no) {
 	push(eflags.val, data_size)
 	push(cs.val, 16)
 	push(eip, data_size)
+
+	cpu.eflags.IF = 0;
+	cpu.eflags.TF = 0;
 	laddr_t idt_entry = cpu.idtr.base + intr_no *sizeof(GateDesc);
 	GateDesc idt;
 	idt.val[0] = laddr_read(idt_entry, 4);
