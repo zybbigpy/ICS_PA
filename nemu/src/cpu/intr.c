@@ -19,12 +19,12 @@ void raise_intr(uint8_t intr_no) {
 	
 	//push 
 	cpu.esp -= 4;
-	vaddr_write(cpu.esp,SREG_SS,4,cpu.eflags.val);
+	vaddr_write(cpu.esp, SREG_SS, 4, cpu.eflags.val);
 	//printf("esp\n");
 	cpu.esp -= 2;
-	vaddr_write(cpu.esp,SREG_SS,2,cpu.cs.val);
+	vaddr_write(cpu.esp, SREG_SS, 2, cpu.cs.val);
 	cpu.esp -= 4;
-	vaddr_write(cpu.esp,SREG_SS,4,cpu.eip);
+	vaddr_write(cpu.esp, SREG_SS, 4, cpu.eip);
 	//set flag
 	cpu.eflags.IF = 0;
 	cpu.eflags.TF = 0;
