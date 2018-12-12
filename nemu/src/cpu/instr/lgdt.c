@@ -1,6 +1,7 @@
 #include "cpu/instr.h"
 
 make_instr_func(lgdt) { 
+	// datasize = 32
 	int len = 1;
 	OPERAND data;
 	data.type = OPR_IMM;
