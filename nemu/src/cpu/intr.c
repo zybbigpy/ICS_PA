@@ -17,10 +17,8 @@ void raise_intr(uint8_t intr_no) {
 	//printf("int_ \n");
 	//assert(0);
 	
-	//push 
 	cpu.esp -= 4;
 	vaddr_write(cpu.esp, SREG_SS, 4, cpu.eflags.val);
-	//printf("esp\n");
 	cpu.esp -= 2;
 	vaddr_write(cpu.esp, SREG_SS, 2, cpu.cs.val);
 	cpu.esp -= 4;
