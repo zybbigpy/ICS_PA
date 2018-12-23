@@ -7,5 +7,6 @@ make_instr_func(in_b) {
 }
 
 make_instr_func(in_v) {
-
+    cpu.eax = pio_read(cpu.edx, 4);
+    return 1;
 }
