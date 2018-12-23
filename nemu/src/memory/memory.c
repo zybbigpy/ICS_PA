@@ -65,7 +65,7 @@ void laddr_write(laddr_t laddr, size_t len, uint32_t data) {
 	uint32_t paddr = laddr;
 	if(cpu.cr0.pg == 1) {
 		if((laddr & 0xfff) + len > 0x1000) {
-			// page across
+			printf("page across! \n");
 			for(int i = 0; i != len; i++) {
 				laddr_write(paddr + i, 1, (data & 0xff));
 				data >>= 8;
