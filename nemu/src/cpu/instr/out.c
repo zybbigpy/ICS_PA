@@ -8,10 +8,10 @@ make_instr_func(out_b) {
 
 make_instr_func(out_v) {
     if(data_size == 16) {
-        
+        pio_write(cpu.edx & 0xffff, 2, cpu.eax & 0xfffff);
     }
     else if(data_size == 32) {
-        cpu.eax = pio_read(cpu.edx & 0xffff, 4);
+        pio_write(cpu.edx & 0xffff, 4, cpu.eax);
     }
     return 1;
 }
