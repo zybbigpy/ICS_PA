@@ -63,19 +63,34 @@ void laddr_write(laddr_t laddr, size_t len, uint32_t data) {
 	paddr_write(laddr, len, data);
 #else
 	uint32_t paddr = laddr;
-	if(cpu.cr0.pg == 1) {
-		if((laddr & 0xfff) + len > 0x1000) {
-			printf("page across! \n");
-			for(int i = 0; i != len; i++) {
-				laddr_write(paddr + i, 1, (data & 0xff));
-				data >>= 8;
-			}
-			return ;
-		} else {
-			paddr = page_translate(laddr);
+	// if(cpu.cr0.pg == 1) {
+	// 	if((laddr & 0xfff) + len > 0x1000) {
+	// 		printf("page across! \n");
+	// 		for(int i = 0; i != len; i++) {
+	// 			laddr_write(paddr + i, 1, (data & 0xff));
+	// 			data >>= 8;
+	// 		}
+	// 		return ;
+	// 	} else {
+	// 		paddr = page_translate(laddr);
+	// 	}
+	// }
+	// return paddr_write(paddr, len, data);
+	if(cpu.cr0.pg==1){
+		if(((laddr&0xFFF)+len)>0x1000){
+			//printf("laddr is %x\n",laddr);
+			uint32_t len1,len2;
+			len1=0x1000-(laddr&0xFFF);
+			len2=(laddr&0xFFF)+len-0x100;
+			paddr=page_translate(laddr);
+			paddr_write(paddr,len1,data&((1<<(len1*8+1))-1));
+			paddr=page_translate(laddr+0x1000-(laddr&0xFFF));
+			paddr_write(paddr,len2,data>>len1*8);
+			return;
 		}
+		paddr=page_translate(laddr);
 	}
-	return paddr_write(paddr, len, data);
+	paddr_write(paddr, len, data);
 #endif
 }
 
