@@ -76,21 +76,6 @@ void laddr_write(laddr_t laddr, size_t len, uint32_t data) {
 	// 	}
 	// }
 	// return paddr_write(paddr, len, data);
-	if(cpu.cr0.pg==1){
-		if(((laddr&0xFFF)+len)>0x1000){
-			//printf("laddr is %x\n",laddr);
-			uint32_t len1,len2;
-			len1=0x1000-(laddr&0xFFF);
-			len2=(laddr&0xFFF)+len-0x100;
-			paddr=page_translate(laddr);
-			paddr_write(paddr,len1,data&((1<<(len1*8+1))-1));
-			paddr=page_translate(laddr+0x1000-(laddr&0xFFF));
-			paddr_write(paddr,len2,data>>len1*8);
-			return;
-		}
-		paddr=page_translate(laddr);
-	}
-	paddr_write(paddr, len, data);
 #endif
 }
 
