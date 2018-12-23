@@ -47,8 +47,7 @@ uint32_t laddr_read(laddr_t laddr, size_t len) {
 			// page across
 			uint32_t res = 0;
 			for (int i = len; i != 0; i--) {
-				res = (res << 8) + laddr_read(paddr + len - 1, 1);
-				len--;
+				res = (res << 8) + laddr_read(paddr + i - 1, 1);
 			}
 			return res;
 		} else {
