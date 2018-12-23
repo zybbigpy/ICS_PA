@@ -49,7 +49,7 @@ uint32_t laddr_read(laddr_t laddr, size_t len) {
 			// assert(0);
 			uint32_t res = 0;
 			while(len--)
-				res = (res << 8) | laddr_read(paddr+len-1, 1);
+				res = (res << 8) | laddr_read(paddr + len - 1, 1);
 			return res;
 		} else {
 			paddr = page_translate(laddr);
