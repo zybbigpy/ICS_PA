@@ -2,6 +2,7 @@
 #include "memory.h"
 #include "string.h"
 
+
 #include <elf.h>
 
 #ifdef HAS_DEVICE_IDE
@@ -37,7 +38,8 @@ uint32_t loader() {
 			//panic("Please implement the loader");
 			uint32_t paddr = mm_malloc(ph->p_vaddr, ph->p_memsz);
 			/* TODO: copy the segment from the ELF file to its proper memory area */
-			memcpy((void*)paddr, (void*)ph->p_offset, ph->p_filesz);
+			//memcpy((void*)paddr, (void*)ph->p_offset, ph->p_filesz);
+			ide_read((void *)paddr,ELF_OFFSET_IN_DISK+ph->p_offset,ph->p_filesz);
 			/* TODO: zeror the memory area [vaddr + file_sz, vaddr + mem_sz) */
 			memset((void *)(paddr + (ph->p_filesz)), 0, (ph->p_memsz) - (ph->p_filesz));
 			
