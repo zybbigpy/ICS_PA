@@ -3,8 +3,8 @@
 make_instr_func(lgdt) { 
 	// datasize = 32
 	int len = 1;
-	OPERAND data;
-	data.type = OPR_IMM;
+	OPERAND rm;
+	rm.type = OPR_IMM;
 	data.data_size = 16;
 	len += modrm_rm(eip + 1, &data);
 	operand_read(&data);
