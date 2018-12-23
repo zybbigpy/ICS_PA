@@ -2,16 +2,6 @@
 #include "cpu/instr.h"
 #include "memory/memory.h"
 
-// #define push(reg, size, help)    \
-// OPERAND help;		       \
-// cpu.esp -= size / 8;   	   \
-// help.data_size = size;     \
-// help.addr = cpu.esp;       \
-// help.sreg = SREG_SS;       \
-// help.val = cpu.reg;        \
-// help.type = OPR_MEM;	   \
-// operand_write(&help);      \
-
 void raise_intr(uint8_t intr_no) {
 #ifdef IA32_INTR
 	//printf("int_ \n");
