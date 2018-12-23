@@ -2,7 +2,7 @@
 #include "device/port_io.h"
 
 make_instr_func(out_b) {
-   cpu.eax = (uint8_t) pio_read(cpu.edx & 0xffff, 1);
+   pio_write(cpu.edx & 0xffff, 1, cpu.eax);
    return 1;
 }
 
