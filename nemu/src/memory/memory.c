@@ -48,8 +48,12 @@ uint32_t laddr_read(laddr_t laddr, size_t len) {
 			// printf("page across assert!\n");
 			// assert(0);
 			uint32_t res = 0;
-			while(len--)
+			for (int i = len; i!= 0; i--) {
+				
+			}
+			while(len > 0) {
 				res = (res << 8) | laddr_read(paddr + len - 1, 1);
+			}
 			return res;
 		} else {
 			paddr = page_translate(laddr);
