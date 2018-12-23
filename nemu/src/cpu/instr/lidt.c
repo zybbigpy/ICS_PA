@@ -36,19 +36,21 @@
 // make_instr_impl_1op(lidt, rm, v)
 
 make_instr_func(lidt) { 
-	int len = 1;;
-	OPERAND data;
-	data.type = OPR_IMM;
-	data.data_size = 16;
-	len += modrm_rm(eip + 1, &data);
-	operand_read(&data);
-	cpu.idtr.limit = data.val;
-	
-	data.data_size = 32;
-	data.addr += 2;
-	operand_read(&data);
-	print_asm_1("lidt", "", 2, &data);
-	cpu.idtr.base = data.val;
-	
+	int len = 1;
+	OPERAND rm1;
+	rm1.type = OPR_IMM;
+	rm1.data_size = 16;
+	len += modrm_rm(eip + 1, &rm1);
+	operand_read(&rm1);
+	cpu.idtr.limit = rm1.val;
+
+	OPERAND rm2;
+	rm2.data_size = 32;
+	rm2.addr = rm1.addr + 2;
+	rm2.sreg = rm1.sreg;
+	rm2.type = OPR_IMM;
+	operand_read(&rm2);
+	cpu.idtr.base = rm2.val;
+	// print_asm_1("lidt", "", 2, &data);
 	return len;
 }
