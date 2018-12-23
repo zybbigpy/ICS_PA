@@ -2,6 +2,7 @@
     "files.associations": {
         "instr.h": "c",
         "int.h": "c",
-        "intr.h": "c"
+        "intr.h": "c",
+        "iret.h": "c"
     }
 }
