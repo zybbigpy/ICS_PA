@@ -63,19 +63,19 @@ void laddr_write(laddr_t laddr, size_t len, uint32_t data) {
 	paddr_write(laddr, len, data);
 #else
 	uint32_t paddr = laddr;
-	// if(cpu.cr0.pg == 1) {
-	// 	if((laddr & 0xfff) + len > 0x1000) {
-	// 		printf("page across! \n");
-	// 		for(int i = 0; i != len; i++) {
-	// 			laddr_write(paddr + i, 1, (data & 0xff));
-	// 			data >>= 8;
-	// 		}
-	// 		return ;
-	// 	} else {
-	// 		paddr = page_translate(laddr);
-	// 	}
-	// }
-	// return paddr_write(paddr, len, data);
+	if(cpu.cr0.pg == 1) {
+		if((laddr & 0xfff) + len > 0x1000) {
+			printf("page across! \n");
+			for(int i = 0; i != len; i++) {
+				laddr_write(paddr + i, 1, (data & 0xff));
+				data >>= 8;
+			}
+			return ;
+		} else {
+			paddr = page_translate(laddr);
+		}
+	}
+	return paddr_write(paddr, len, data);
 #endif
 }
 
