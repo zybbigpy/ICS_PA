@@ -29,12 +29,11 @@ void load_sreg(uint8_t sreg) {
 	
 	// load the segdesc
 	SegDesc sd;
-	//memcpy(&sd, hw_mem + laddr_segtable_fnd, sizeof(SegDesc));
-	//memcpy(&sd.val[0], (void *)laddr_segtable_fnd, 4);
-	//memcpy(&sd.val[1], (void *)laddr_segtable_fnd + 4, 4);
 	sd.val[0] = laddr_read(laddr_segtable_fnd, 4);
 	sd.val[1] = laddr_read(laddr_segtable_fnd + 4, 4);
+
 	// load cache part of segreg according to the segdesc
+	
 	cpu.segReg[sreg].soft_use = sd.soft_use;
 	cpu.segReg[sreg].privilege_level = sd.soft_use;
 	cpu.segReg[sreg].type = sd.type;
