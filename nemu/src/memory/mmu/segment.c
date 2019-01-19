@@ -1,5 +1,6 @@
 #include "cpu/cpu.h"
 #include "memory/memory.h"
+#include "stdio.h"
 
 // return the linear address from the virtual address and segment selector
 uint32_t segment_translate(uint32_t offset, uint8_t sreg) {
@@ -31,6 +32,7 @@ void load_sreg(uint8_t sreg) {
 	sd.val[1] = laddr_read(laddr_segtable_fnd + 4, 4);
 
 	// // load cache part of segreg according to the segdesc
+	printf("cpu cr0 pe = %d", cpu.cr0.pe);
 	assert(sd.present==1);
 	cpu.segReg[sreg].soft_use = sd.soft_use;
 	cpu.segReg[sreg].privilege_level = sd.soft_use;
