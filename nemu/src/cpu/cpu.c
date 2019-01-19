@@ -6,7 +6,7 @@
 #include "monitor/breakpoint.h"
 #include <stdio.h>
 #include <assert.h>
-#include "../libs/nemu-ref/include/cpu-ref/instr_ref.h"
+#include <cpu-ref/instr_ref.h>
 
 CPU_STATE cpu;
 FPU fpu;
