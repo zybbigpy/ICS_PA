@@ -1,7 +1,7 @@
 #include "common.h"
 #include "memory.h"
 #include "string.h"
-// #include "config.h"
+#include "config.h"
 
 
 #include <elf.h>
