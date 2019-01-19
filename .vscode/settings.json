@@ -3,6 +3,8 @@
         "instr.h": "c",
         "int.h": "c",
         "intr.h": "c",
-        "iret.h": "c"
+        "iret.h": "c",
+        "common.h": "c",
+        "config.h": "c"
     }
 }
