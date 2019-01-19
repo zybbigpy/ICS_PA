@@ -5,6 +5,7 @@
         "intr.h": "c",
         "iret.h": "c",
         "common.h": "c",
-        "config.h": "c"
+        "config.h": "c",
+        "instr_ref.h": "c"
     }
 }
