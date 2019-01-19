@@ -38,14 +38,6 @@ void load_sreg(uint8_t sreg) {
 	cpu.segReg[sreg].base = (sd.base_31_24 << 24) + (sd.base_23_16 << 16) 
 							+ sd.base_15_0;
 	cpu.segReg[sreg].limit = (sd.limit_19_16 << 16) + sd.limit_15_0;
-	// SegDesc segdesc;
-	// segdesc.val[0]=laddr_read(cpu.gdtr.base+cpu.segReg[sreg].index*sizeof(SegDesc),4);
-	// segdesc.val[1]=laddr_read(cpu.gdtr.base+cpu.segReg[sreg].index*sizeof(SegDesc)+4,4);
-	//printf("%d's index is %d\n",sreg,cpu.segReg[sreg].index);
-	//printf("segdesc=%x%x\n",segdesc.val[0],segdesc.val[1]);
-	// assert(sd.present==1);
-	// cpu.segReg[sreg].base=segdesc.base_15_0+(segdesc.base_23_16<<16)+(segdesc.base_31_24<<24);
-	// cpu.segReg[sreg].limit=segdesc.limit_15_0+(segdesc.limit_19_16<<16);
 	// for debug use
 	if(cpu.cr0.pe == 0) {
 		assert(sd.granularity == 1);
