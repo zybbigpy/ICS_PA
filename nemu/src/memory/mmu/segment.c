@@ -43,6 +43,7 @@ void load_sreg(uint8_t sreg) {
 	cpu.segReg[sreg].limit = (sd.limit_19_16 << 16) + sd.limit_15_0;
 	// for debug use
 	if(cpu.cr0.pe == 0) {
+		printf("pe = 0\n");
 		assert(sd.granularity == 1);
 		assert(cpu.segReg[sreg].base == 0x0);
 		assert(cpu.segReg[sreg].limit == 0xfffff);
