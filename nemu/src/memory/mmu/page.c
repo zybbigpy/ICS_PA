@@ -32,6 +32,7 @@ paddr_t page_translate(laddr_t laddr) {
 	//printf("%x locating\n",laddr);
 	pde.val=paddr_read(pageDir_addr+pageDir_index*4,4);
 	if(pde.present==0){
+		printf("laddr is %d \n", laddr);
 		printf("laddr is %x,eip is %x\n",laddr,cpu.eip);
 		assert(pde.present==1);
 	}
