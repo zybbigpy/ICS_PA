@@ -48,6 +48,7 @@ paddr_t page_translate(laddr_t laddr) {
 	// paddr = pte.page_frame * 0x1000 + offset;
 	// //if(laddr>0xa0000&&laddr<0xafa00) 	printf("laddr is %x,tabladdr is %x,diraddr is %x,paddr is%x\n",laddr,pageTable_addr,pageDir_addr,paddr);
 	// return paddr;
+	return 0;
 #else
 	return tlb_read(laddr) | (laddr & PAGE_MASK);
 #endif
