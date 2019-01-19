@@ -34,7 +34,7 @@ void load_sreg(uint8_t sreg) {
 	// // load cache part of segreg according to the segdesc
 	printf("cpu cr0 pe = %d \n", cpu.cr0.pe);
 	printf("sd.present = %d \n", sd.present);
-	assert(sd.present==1);
+	// assert(sd.present==1);
 	cpu.segReg[sreg].soft_use = sd.soft_use;
 	cpu.segReg[sreg].privilege_level = sd.soft_use;
 	cpu.segReg[sreg].type = sd.type;
