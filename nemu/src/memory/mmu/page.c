@@ -38,15 +38,9 @@ paddr_t page_translate(laddr_t laddr) {
 		assert(pde.present == 1);
 	}
 	pageTable_addr = pde.page_frame * 0x1000;
-	//printf("addr is %x\n",pageTable_addr+pageTable_index*4);
 	pte.val = paddr_read(pageTable_addr + pageTable_index * 4, 4);
-	if (pte.present == 0)
-	{
-		printf("laddr is %x,tabel addr is %x,eip is %x\n", laddr, pde.page_frame, cpu.eip);
-		assert(pte.present == 1);
-	}
+	assert(pte.present == 1);
 	paddr = pte.page_frame * 0x1000 + offset;
-	//if(laddr>0xa0000&&laddr<0xafa00) 	printf("laddr is %x,tabladdr is %x,diraddr is %x,paddr is%x\n",laddr,pageTable_addr,pageDir_addr,paddr);
 	return paddr;
 #else
 	return tlb_read(laddr) | (laddr & PAGE_MASK);
