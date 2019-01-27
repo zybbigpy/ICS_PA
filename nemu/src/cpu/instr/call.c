@@ -49,12 +49,12 @@ make_instr_func(call_near_indirect) {
     // operand_read(&rm);
     // cpu.eip = rm.val;
     int len = 1;
-    OPERAND rel;
+    OPERAND rm;
     cpu.esp -= 4;
-    len += modrm_rm(eip + 1, &rel);
-    rel.data_size = data_size;
-    operand_read(&rel);
+    len += modrm_rm(eip + 1, &rm);
+    rm.data_size = data_size;
+    operand_read(&rm);
     vaddr_write(cpu.esp, SREG_SS, 4, eip + len);
-    cpu.eip = rel.val;
+    cpu.eip = rm.val;
     return 0;
 }
