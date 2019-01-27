@@ -20,23 +20,7 @@ paddr_t page_translate(laddr_t laddr) {
 	assert(pte.present == 1);
 	paddr = (pte.page_frame << 12) + OFFSET;
 	return paddr;
-	// PDE pde;
-	// PTE pte;
-	// paddr_t paddr = 0;
-	// paddr_t pageTable_addr;
-	// paddr_t pageDir_addr;
-	// int pageDir_index = laddr >> 22;
-	// int pageTable_index = (laddr >> 12) & 0x3FF;
-	// int offset = laddr & 0xFFF;
-	// pageDir_addr = cpu.cr3.pdbr * 0x1000;
-	// //printf("%x locating\n",laddr);
-	// pde.val = paddr_read(pageDir_addr + pageDir_index * 4, 4);
-	// assert(pde.present == 1);
-	// pageTable_addr = pde.page_frame * 0x1000;
-	// pte.val = paddr_read(pageTable_addr + pageTable_index * 4, 4);
-	// assert(pte.present == 1);
-	// paddr = pte.page_frame * 0x1000 + offset;
-	// return paddr;
+
 #else
 	return tlb_read(laddr) | (laddr & PAGE_MASK);
 #endif
