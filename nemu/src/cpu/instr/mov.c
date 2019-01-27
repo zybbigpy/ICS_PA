@@ -335,30 +335,30 @@ make_instr_func(mov_c2r_l) {
 	return 2;
 }
 
-// make_instr_func(mov_rm2s_w) {
-// 	// int len = 1;
-// 	// OPERAND opr_src;
-// 	// opr_src.data_size = 16;
-// 	// opr_src.sreg = SREG_CS;
-// 	// decode_operand_rm
-// 	// uint8_t sreg_index = instr_fetch(eip + 1, 1);
-// 	// sreg_index = (sreg_index >> 3) & 0x7;
-// 	// //printf("sreg index == %d\n",sreg_index);
-// 	// cpu.segReg[sreg_index].val = opr_src.val;
+make_instr_func(mov_rm2s_w) {
+	// int len = 1;
+	// OPERAND opr_src;
+	// opr_src.data_size = 16;
+	// opr_src.sreg = SREG_CS;
+	// decode_operand_rm
+	// uint8_t sreg_index = instr_fetch(eip + 1, 1);
+	// sreg_index = (sreg_index >> 3) & 0x7;
+	// //printf("sreg index == %d\n",sreg_index);
+	// cpu.segReg[sreg_index].val = opr_src.val;
 	
-// 	//load_sreg(sreg_index);
-// 	int len = 1;
-// 	OPERAND rm;
-// 	rm.data_size = 16;
-// 	rm.sreg =  SREG_CS;
-// 	len += modrm_rm(eip +1, &rm);
-// 	operand_read(&rm);
+	//load_sreg(sreg_index);
+	int len = 1;
+	OPERAND rm;
+	rm.data_size = 16;
+	rm.sreg =  SREG_CS;
+	len += modrm_rm(eip +1, &rm);
+	operand_read(&rm);
 
-// 	uint8_t sreg_index = 0;
-// 	uint8_t modrm_byte = instr_fetch(eip + 1, 1);
-// 	sreg_index = (modrm_byte >> 3) & 0x7;
-// 	cpu.segReg[sreg_index].val = rm.val;
-// 	load_sreg(sreg_index);
+	uint8_t sreg_index = 0;
+	uint8_t modrm_byte = instr_fetch(eip + 1, 1);
+	sreg_index = (modrm_byte >> 3) & 0x7;
+	cpu.segReg[sreg_index].val = rm.val;
+	load_sreg(sreg_index);
 
-// 	return len;	
-// }
+	return len;	
+}
