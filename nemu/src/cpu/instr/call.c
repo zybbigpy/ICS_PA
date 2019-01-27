@@ -50,10 +50,10 @@ make_instr_func(call_near_indirect) {
     // cpu.eip = rm.val;
     int len = 1;
     OPERAND rm;
-    cpu.esp -= 4;
     len += modrm_rm(eip + 1, &rm);
     rm.data_size = data_size;
     operand_read(&rm);
+    cpu.esp -= 4;
     vaddr_write(cpu.esp, SREG_SS, 4, eip + len);
     cpu.eip = rm.val;
     return 0;
