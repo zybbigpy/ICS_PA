@@ -18,8 +18,8 @@ make_instr_impl_2op(mov, a, o, b)
 make_instr_impl_2op(mov, a, o, v)
 make_instr_impl_2op(mov, o, a, b)
 make_instr_impl_2op(mov, o, a, v)
-// add impl to the code given by ics
-make_instr_impl_2op(mov, rm, s, w) 
+// add impl to the code given by ics TODO: there exists some problem
+// make_instr_impl_2op(mov, rm, s, w) 
 
 /*
 make_instr_func(mov_r2rm_b) {
