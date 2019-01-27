@@ -37,11 +37,11 @@ void paddr_write(paddr_t paddr, size_t len, uint32_t data) {
 #ifdef CACHE_ENABLED
 	cache_write(paddr, len, data, L1_dcache);
 #else
-	if(is_mmio(paddr)!=-1){
-		mmio_write(paddr,len,data,is_mmio(paddr));
+	if(is_mmio(paddr) == -1){
+		hw_mem_write(paddr, len, data);
 	}
 	else{
-		hw_mem_write(paddr, len, data);
+		mmio_write(paddr, len, data, is_mmio(paddr));
 	}
 #endif
 }
@@ -137,38 +137,3 @@ uint32_t instr_fetch(vaddr_t vaddr, size_t len) {
 uint8_t * get_mem_addr() {
 	return hw_mem;
 }
-// uint8_t hw_mem[MEM_SIZE_B];
-
-// uint32_t hw_mem_read(paddr_t paddr, size_t len) {
-// 	uint32_t ret = 0;
-// 	//printf("paddr:%x,len:%x\n",paddr,len);
-// 	memcpy(&ret, hw_mem + paddr, len);
-// 	//printf("ret=%x\n",ret);
-// 	return ret;
-// }
-
-// void hw_mem_write(paddr_t paddr, size_t len, uint32_t data) {
-// 	memcpy(hw_mem + paddr, &data, len);
-// }
-
-// uint32_t paddr_read(paddr_t paddr, size_t len) {
-// 	uint32_t ret = 0;
-// 	//ret=cache_read(paddr,len,cache_mem);
-// 	if(is_mmio(paddr)!=-1){
-// 		ret = mmio_read(paddr,len,is_mmio(paddr));
-// 	}
-// 	else{
-// 		ret = hw_mem_read(paddr, len);
-// 	}
-// 	return ret;
-// }
-
-// void paddr_write(paddr_t paddr, size_t len, uint32_t data) {
-// 	//cache_write(paddr,len,data,cache_mem);
-// 	if(is_mmio(paddr)!=-1){
-// 		mmio_write(paddr,len,data,is_mmio(paddr));
-// 	}
-// 	else{
-// 		hw_mem_write(paddr, len, data);
-// 	}
-// }
