@@ -4,7 +4,6 @@
 
 #include <string.h>
 #include <stdlib.h>
-#define PIX(s,x,y) s->pixels[x+y*s->w]
 
 int get_fps();
 
