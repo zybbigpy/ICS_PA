@@ -69,6 +69,14 @@ size_t fs_write(int fd, void *buf, size_t len) {
 off_t fs_lseek(int fd, off_t offset, int whence) {
 	panic("Please implement fs_lseek at fs.c");
 	return -1;
+	assert(fd < NR_FILES);
+  switch (whence) {
+    case SEEK_SET: file_table[fd].offset = offset; break;
+    case SEEK_CUR: file_table[fd].offset += offset; break;
+    case SEEK_END: file_table[fd].offset = file_table[fd].size + offset; break;
+    default: return -1;
+  }
+  return file_table[fd].offset;
 }
 
 int fs_close(int fd) {
