@@ -76,7 +76,7 @@
 // 	return -1;
 // }
 #include "common.h"
-#include "string.h"
+#include <string.h>
 
 typedef struct {
 	char *name;
@@ -84,14 +84,9 @@ typedef struct {
 	uint32_t disk_offset;
 } file_info;
 
-typedef struct {
-	bool used;
-	uint32_t index;
-	uint32_t offset;
-} Fstate;
-
 enum {SEEK_SET, SEEK_CUR, SEEK_END};
 
+/* This is the information about all files in disk. */
 static const file_info file_table[] = {
 	{"1.rpg", 188864, 1048576}, {"2.rpg", 188864, 1237440},
 	{"3.rpg", 188864, 1426304}, {"4.rpg", 188864, 1615168},
@@ -110,93 +105,67 @@ static const file_info file_table[] = {
 
 #define NR_FILES (sizeof(file_table) / sizeof(file_table[0]))
 
-Fstate files[NR_FILES + 3];
-
 void ide_read(uint8_t *, uint32_t, uint32_t);
 void ide_write(uint8_t *, uint32_t, uint32_t);
 
-/* Please implement a simple file system here */
+/* TODO: implement a simplified file system here. */
 
-int fs_open(const char *pathname, int flags)
-{
-	//panic("Please implement fs_open at fs.c");
-	for (int i = 0; i < NR_FILES; i++)
-	{
-		if (strcmp(pathname, file_table[i].name) == 0)
-		{
-			files[i + 3].used = 1;
-			files[i + 3].offset = 0;
-			//Log("file \"%s\" opend",pathname);
-			return i + 3;
-		}
+typedef struct {
+	bool opened;
+	uint32_t offset;
+} Fstate;
+
+Fstate FD[NR_FILES + 3]; 
+
+int fs_open(const char *pathname, int flags);	/* 在我们的实现中可以忽略flags */
+int fs_read(int fd, void *buf, int len);
+int fs_write(int fd, void *buf, int len);
+int fs_lseek(int fd, int offset, int whence);
+int fs_close(int fd);
+
+int fs_open(const char *pathname, int flags) {
+	int i;
+//	Log("%s", pathname);
+	for(i = 0; i < NR_FILES; ++ i) if(strcmp(pathname, file_table[i].name) == 0) break;
+	assert(i < NR_FILES);
+	if(i < NR_FILES) {
+		FD[i + 3].opened = true;
+		FD[i + 3].offset = 0;//file_table[i].disk_offset;
+		return i + 3;
 	}
-	assert(0);
 	return -1;
 }
 
-size_t fs_read(int fd, void *buf, size_t len)
-{
-	assert(fd > 2);
-	assert(files[fd].used);
-	//panic("Please implement fs_read at fs.c");
-	uint32_t real_len = len;
-	//Log("Read from %s:%x %x bytes",file_table[fd-3].name,files[fd].offset,len);
-	if (files[fd].offset + len >= file_table[fd - 3].size)
-		real_len = file_table[fd - 3].size - files[fd].offset - 1;
-	if (real_len == 0)
-		return 0;
-	if (files[fd].offset >= file_table[fd - 3].size)
-		return 0;
-	memset(buf + real_len, 0, len - real_len);
-	ide_read(buf, file_table[fd - 3].disk_offset + files[fd].offset, real_len);
-	files[fd].offset += real_len;
-	//Log("offset of %s is %x,return %x",file_table[fd-3].name,files[fd].offset,real_len);
-	return real_len;
+int fs_read(int fd, void *buf, int len){
+	if(!FD[fd].opened) return -1;
+//	assert(FD[fd].offset + len <= file_table[fd-3].size);
+	int remain = file_table[fd-3].size - FD[fd].offset;
+	if(remain < len) len = remain;
+	ide_read(buf, file_table[fd-3].disk_offset + FD[fd].offset, len);
+	FD[fd].offset += len;
+	return len;
+	if(strlen(buf) == 0) return -1; else return strlen(buf);
 }
 
-size_t fs_write(int fd, void *buf, size_t len)
-{
-	assert(fd <= 2);
-#ifdef HAS_DEVICE_SERIAL
-	int i;
-	extern void serial_printc(char);
-	for (i = 0; i < len; i++)
-	{
-		serial_printc(((char *)buf)[i]);
-	}
-#else
-	asm volatile(".byte 0x82"
-				 : "=a"(len)
-				 : "a"(4), "b"(fd), "c"(buf), "d"(len));
-#endif
-
+int fs_write(int fd, void *buf, int len) {
+	if(!FD[fd].opened) return -1;
+	assert(FD[fd].offset + len < file_table[fd-3].size);
+	ide_write(buf, FD[fd].offset, len);
+	FD[fd].offset += len;
 	return len;
 }
 
-off_t fs_lseek(int fd, off_t offset, int whence)
-{
-	//panic("Please implement fs_lseek at fs.c");
-	//Log("seek!");
-	switch (whence)
-	{
-	case SEEK_SET:
-		files[fd].offset = offset;
-		return files[fd].offset;
-	case SEEK_CUR:
-		files[fd].offset += offset;
-		return files[fd].offset;
-	case SEEK_END:
-		files[fd].offset = file_table[fd - 3].size + offset;
-		return files[fd].offset;
+int fs_lseek(int fd, int offset, int whence) {
+	switch (whence) {
+		case SEEK_SET : FD[fd].offset = offset; break;
+		case SEEK_CUR : FD[fd].offset += offset; break;
+		case SEEK_END : FD[fd].offset = file_table[fd-3].size + offset; break;
+		default : assert(0);
 	}
-	return -1;
+	return FD[fd].offset;
 }
 
-int fs_close(int fd)
-{
-	//panic("Please implement fs_close at fs.c");
-	assert(fd < NR_FILES + 3);
-	files[fd].used = 0;
-	files[fd].offset = 0;
+int fs_close(int fd) {
+	FD[fd].opened = false;
 	return 0;
 }
