@@ -56,12 +56,12 @@ void SDL_FillRect(SDL_Surface *dst, SDL_Rect *dstrect, uint32_t color) {
 		dstrect->h = h;
 	}
 
-	for(int j=0;j<h;j++){
-		for(int i=0;i<w;i++){
-			dst->pixels[(dx+i)+(dy+j)*dst->w]=color;
+	for (int j = 0; j != h; j++) {
+		for (int i = 0; i != w; i++) {
+			dst->pixels[(dx + i) + (dy + j) * dst->w] = color;
 		}
 	}
-	assert(0);
+	//assert(0);
 }
 
 void SDL_SetPalette(SDL_Surface *s, int flags, SDL_Color *colors, 
