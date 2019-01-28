@@ -46,7 +46,7 @@ int fs_open(const char *pathname, int flags) {
 	int fd;
   for (fd = 0; fd < NR_FILES; ++fd) 
     if (strcmp(file_table[fd].name, pathname) == 0) {
-      file_table[fd].offset = 0;
+      file_table[fd].disk_offset = 0;
       return fd;
     }
   assert(0);
