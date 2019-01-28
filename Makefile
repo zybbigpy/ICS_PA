@@ -177,7 +177,7 @@ test_pa-4-2: test_pa-4-1 update
 	./nemu/nemu --autorun --testcase echo --kernel
 
 test_pa-4-3: nemu update
-	$(call git_commit, "test_pa-4-3")
+	#$(call git_commit, "test_pa-4-3")
 	./nemu/nemu --test-game --kernel --autorun
 
 
