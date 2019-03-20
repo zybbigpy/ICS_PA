@@ -2,6 +2,7 @@
 *.d
 *.i
 *.swp
+.vscode
 
 # Object files
 *.o
